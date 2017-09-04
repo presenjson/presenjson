@@ -1,0 +1,31 @@
+.clip {
+    z-index: 100;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: #000000;
+    color: #FFFFFF;
+
+    display: flex;
+    align-items: center;
+    align-content: center;
+    text-align: center;
+
+    font-size: 40px;
+    text-transform: uppercase;
+}
+
+
+.clip h1 {
+    width: 100%;
+}
+
+.presenjson > div > .clip {
+    z-index: 10;
+}
+
+.presenjson > .is-on-screen > .clip {
+    z-index: 1000;
+}
