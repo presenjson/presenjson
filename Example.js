@@ -2,12 +2,38 @@ import React from 'react';
 
 import PresenJson from './src/PresenJson';
 import Clip from './src/Clip';
+import Scene from './src/Scene';
+import Audio from './src/Audio';
+import Image from './src/Image';
+
+const Scene1 = (props) => {
+    console.log(props);
+    return (
+        <Scene>
+            <Image fullScreen src={`${props.pic}.jpg`} />
+            <Audio play={props.onScreen} src={`croud.mp3#t=${props.offset}`} volume={props.horn && 0.5 || 1} />
+            {props.horn && <Audio play={props.onScreen} src={`horn.mp3#t=2`} />}
+        </Scene>
+    );
+}
+
 
 export default () => {
     return (
         <PresenJson debug>
-            {Array(1000).fill([], 0, 1000).map((o, i) => <Clip key={i} length={1000}><h1>{i}</h1></Clip>)}
-            <Clip length={5000} ><h1>END</h1></Clip>
+            <Clip length={150} component={Scene1} offset={121} pic={2} />
+            <Clip length={200} />
+            <Clip length={150} component={Scene1} offset={122} pic={1} />
+            <Clip length={150} />
+            <Clip length={150} component={Scene1} offset={123} pic={4} />
+            <Clip length={100} />
+            <Clip length={150} component={Scene1} offset={124} pic={5} />
+            <Clip length={80} />
+            <Clip length={150} component={Scene1} offset={125} pic={4} />
+            <Clip length={60} />
+            <Clip length={150} component={Scene1} offset={125} pic={1} />
+            <Clip length={50} />
+            <Clip length={20000} component={Scene1} offset={129} horn />
         </PresenJson>
     );
 }

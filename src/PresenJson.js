@@ -9,7 +9,7 @@ export default class PresenJson extends PureComponent {
         super(...args)
         this.time = this.props.startAt;
         this.mountedAt = 0;
-        this.children = R.flatten(this.props.children);
+        this.children = R.flatten(R.of(this.props.children));
 
         this.state = {
             bucket: Math.ceil(this.time / 1000),
@@ -44,7 +44,7 @@ export default class PresenJson extends PureComponent {
     }
 
     componentWillReceiveProps(nextProps){
-        this.children = R.flatten(nextProps.children);
+        this.children = R.flatten(R.of(this.props.children));
 
         this.setState(buckets(this.children))
     }
@@ -55,7 +55,7 @@ export default class PresenJson extends PureComponent {
             <div className='presenjson'>
                 {currentBucket.map((i) =>
                     <Screen key={`screen-${i}`} i={i}
-                        component={this.children[i]}
+                        {...this.children[i].props}
                         onScreen={this.state.onScreen === i} />
                 )}
             </div>
