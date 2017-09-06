@@ -5,6 +5,8 @@ import Clip from './src/Clip';
 import Scene from './src/Scene';
 import Audio from './src/Audio';
 import Image from './src/Image';
+import Video from './src/Video';
+
 
 const Scene1 = (props) => {
     console.log(props);
@@ -13,6 +15,14 @@ const Scene1 = (props) => {
             <Image fullScreen src={`${props.pic}.jpg`} />
             <Audio play={props.onScreen} src={`croud.mp3#t=${props.offset}`} volume={props.horn && 0.5 || 1} />
             {props.horn && <Audio play={props.onScreen} src={`horn.mp3#t=2`} />}
+        </Scene>
+    );
+}
+
+const Scene2 = (props) => {
+    return (
+        <Scene>
+            <Video play={props.onScreen} src={`http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4#t=${props.offset}`} />
         </Scene>
     );
 }
@@ -34,6 +44,7 @@ export default () => {
             <Clip length={150} component={Scene1} offset={125} pic={1} />
             <Clip length={50} />
             <Clip length={20000} component={Scene1} offset={129} horn />
+            <Clip length={20000} component={Scene2} offset={5} horn />
         </PresenJson>
     );
 }
