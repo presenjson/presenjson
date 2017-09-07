@@ -13,8 +13,8 @@ const Scene1 = (props) => {
     return (
         <Scene>
             <Image fullScreen src={`${props.pic}.jpg`} />
-            <Audio play={props.onScreen} src={`croud.mp3#t=${props.offset}`} volume={props.horn && 0.5 || 1} />
-            {props.horn && <Audio play={props.onScreen} src={`horn.mp3#t=2`} />}
+            <Audio play={props.onScreen && !props.paused} src={`croud.mp3#t=${props.offset}`} volume={props.horn && 0.5 || 1} />
+            {props.horn && <Audio play={props.onScreen && !props.paused} src={`horn.mp3#t=2`} />}
         </Scene>
     );
 }
@@ -30,7 +30,7 @@ const Scene2 = (props) => {
 
 export default () => {
     return (
-        <PresenJson debug>
+        <PresenJson debug >
             <Clip length={150} component={Scene1} offset={121} pic={2} />
             <Clip length={200} />
             <Clip length={150} component={Scene1} offset={122} pic={1} />

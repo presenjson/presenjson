@@ -12,6 +12,7 @@ export default class PresenJson extends PureComponent {
         this.children = R.flatten(R.of(this.props.children));
 
         this.state = {
+            paused: !this.props.autoPlay,
             bucket: Math.ceil(this.time / 1000),
             onScreen: [],
             ...buckets(this.children)
@@ -20,9 +21,19 @@ export default class PresenJson extends PureComponent {
 
     componentDidMount() {
         this.mountedAt = new Date().valueOf();
+        console.log(this.state.paused);
 
         requestAnimationFrame(this.loop);
     };
+
+    componentWillReceiveProps(nextProps){
+        this.children = R.flatten(R.of(this.props.children));
+        this.setState(buckets(this.children))
+    }
+
+    togglePlayback = () => {
+        this.setState({ paused: !this.state.paused });
+    }
 
     isOnScreen = (time) => (o) => {
         return this.state.positions[o] <= time &&
@@ -31,31 +42,29 @@ export default class PresenJson extends PureComponent {
 
     loop = () => {
         const current = new Date().valueOf();
-        const loopDelta = (current - this.time) - this.mountedAt;
-        const time = current - this.mountedAt;
-        const bucket = Math.ceil(time / 1000) - 1;
-        const activeBucket = this.state.buckets[bucket] || [];
-        const onScreen = activeBucket.filter(this.isOnScreen(time));
 
-        this.time = time;
-        this.setState({ bucket, onScreen: onScreen[0] })
+        if(!this.state.paused) {
+            this.time = current - this.mountedAt;
+            const bucket = Math.ceil(this.time / 1000) - 1;
+            const activeBucket = this.state.buckets[bucket] || [];
+            const onScreen = activeBucket.filter(this.isOnScreen(this.time));
+
+            this.setState({ bucket, onScreen: onScreen[0] })
+        } else {
+            this.mountedAt = current - this.time;
+        }
 
         requestAnimationFrame(this.loop);
-    }
-
-    componentWillReceiveProps(nextProps){
-        this.children = R.flatten(R.of(this.props.children));
-
-        this.setState(buckets(this.children))
     }
 
     render() {
         const currentBucket = this.state.buckets[this.state.bucket] || [];
         return (
-            <div className='presenjson'>
+            <div className='presenjson' onClick={this.togglePlayback}>
                 {currentBucket.map((i) =>
                     <Screen key={`screen-${i}`} i={i}
                         {...this.children[i].props}
+                        paused={this.state.paused}
                         onScreen={this.state.onScreen === i} />
                 )}
             </div>
@@ -65,7 +74,8 @@ export default class PresenJson extends PureComponent {
 
 PresenJson.defaultProps = {
     startAt: 0,
-    debug: false
+    debug: false,
+    autoPlay: false
 };
 
 PresenJson.propTypes = {
