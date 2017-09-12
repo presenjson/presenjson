@@ -7,9 +7,7 @@ import Audio from './src/Audio';
 import Image from './src/Image';
 import Video from './src/Video';
 
-
 const Scene1 = (props) => {
-    console.log(props);
     return (
         <Scene>
             <Image fullScreen src={`${props.pic}.jpg`} />
@@ -22,11 +20,10 @@ const Scene1 = (props) => {
 const Scene2 = (props) => {
     return (
         <Scene>
-            <Video play={props.onScreen} src={`http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4#t=${props.offset}`} />
+            <Video play={props.onScreen && !props.paused} src={`http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4#t=${props.offset}`} />
         </Scene>
     );
 }
-
 
 export default () => {
     return (

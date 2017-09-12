@@ -59,14 +59,19 @@ export default class PresenJson extends PureComponent {
 
     render() {
         const currentBucket = this.state.buckets[this.state.bucket] || [];
+        const classNameState = this.state.paused && 'paused';
         return (
-            <div className='presenjson' onClick={this.togglePlayback}>
-                {currentBucket.map((i) =>
-                    <Screen key={`screen-${i}`} i={i}
-                        {...this.children[i].props}
-                        paused={this.state.paused}
-                        onScreen={this.state.onScreen === i} />
+            <div className={`presenjson ${classNameState}`}
+                onClick={this.togglePlayback}>
+                <div className='screens'>
+                    {currentBucket.map((i) =>
+                        <Screen key={`screen-${i}`} i={i}
+                            {...this.children[i].props}
+                            paused={this.state.paused}
+                            onScreen={this.state.onScreen === i} />
                 )}
+                </div>
+                <div className='playback-state' />
             </div>
     );
     }
