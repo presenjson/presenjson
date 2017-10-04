@@ -104,6 +104,10 @@
     animation-fill-mode: forwards;
 }
 
+.initial .playback-state {
+    animation: none;
+}
+
 .paused .playback-state {
     border-left: 20px solid white;
     border-right: 20px solid white;

@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import R from 'ramda';
+import cx from 'classnames';
 import Screen from './Screen';
 import buckets from './utils/buckets';
 window.R = R;
@@ -59,9 +60,14 @@ export default class PresenJson extends PureComponent {
 
     render() {
         const currentBucket = this.state.buckets[this.state.bucket] || [];
-        const classNameState = this.state.paused && 'paused';
+        const classNames = cx({
+            presenjson: true,
+            paused: this.state.paused && this.time,
+            initial: !this.time
+        });
+
         return (
-            <div className={`presenjson ${classNameState}`}
+            <div className={classNames}
                 onClick={this.togglePlayback}>
                 <div className='screens'>
                     {currentBucket.map((i) =>
