@@ -5,7 +5,6 @@
     position: absolute;
     left: 0;
     top: 0;
-    background: #000000;
     color: #FFFFFF;
 
     display: flex;
@@ -129,4 +128,16 @@
     height: 60px;
     transition: all .25s linear;
     animation: rotate .7s infinite ease-in-out;
+}
+
+.layer {
+    z-index: 10;
+}
+
+.background {
+    display: none;
+}
+
+.foreground {
+    z-index: 20;
 }

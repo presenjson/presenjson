@@ -1,85 +1,37 @@
-import React, { PureComponent } from 'react';
+import React, { Component} from 'react';
+import PropTypes from 'prop-types';
 import R from 'ramda';
 import cx from 'classnames';
-import Screen from './Screen';
-import buckets from './utils/buckets';
-window.R = R;
+import Layer from './Layer';
 
-export default class PresenJson extends PureComponent {
-    constructor(...args) {
-        super(...args)
-        this.time = this.props.startAt;
-        this.mountedAt = 0;
-        this.children = R.flatten(R.of(this.props.children));
-
-        this.state = {
-            paused: !this.props.autoPlay,
-            bucket: Math.ceil(this.time / 1000),
-            onScreen: [],
-            ...buckets(this.children)
-        }
-    }
-
-    componentDidMount() {
-        this.mountedAt = new Date().valueOf();
-        console.log(this.state.paused);
-
-        requestAnimationFrame(this.loop);
-    };
-
-    componentWillReceiveProps(nextProps){
-        this.children = R.flatten(R.of(this.props.children));
-        this.setState(buckets(this.children))
+class PresenJson extends Component {
+    state = {
+        paused: !this.props.autoPlay,
+        initial: true
     }
 
     togglePlayback = () => {
-        this.setState({ paused: !this.state.paused });
-    }
-
-    isOnScreen = (time) => (o) => {
-        return this.state.positions[o] <= time &&
-        (this.state.positions[o] + this.state.lengths[o]) >= time;
-    }
-
-    loop = () => {
-        const current = new Date().valueOf();
-
-        if(!this.state.paused) {
-            this.time = current - this.mountedAt;
-            const bucket = Math.ceil(this.time / 1000) - 1;
-            const activeBucket = this.state.buckets[bucket] || [];
-            const onScreen = activeBucket.filter(this.isOnScreen(this.time));
-
-            this.setState({ bucket, onScreen: onScreen[0] })
-        } else {
-            this.mountedAt = current - this.time;
-        }
-
-        requestAnimationFrame(this.loop);
+        this.setState({ paused: !this.state.paused, initial: false });
     }
 
     render() {
-        const currentBucket = this.state.buckets[this.state.bucket] || [];
         const classNames = cx({
             presenjson: true,
-            paused: this.state.paused && this.time,
-            initial: !this.time
+            paused: this.state.paused && !this.state.initial,
+            initial: this.state.initial
         });
+        const layers = R.flatten(R.of(this.props.children));
 
-        return (
-            <div className={classNames}
-                onClick={this.togglePlayback}>
-                <div className='screens'>
-                    {currentBucket.map((i) =>
-                        <Screen key={`screen-${i}`} i={i}
-                            {...this.children[i].props}
-                            paused={this.state.paused}
-                            onScreen={this.state.onScreen === i} />
-                )}
-                </div>
-                <div className='playback-state' />
+        return (<div className={classNames} onClick={this.togglePlayback}>
+            <div className='layers'>
+                {layers.map((track, i) => <Layer
+                    {...track.props}
+                    paused={this.state.paused}
+                    startAt={this.props.startAt}
+                    key={i} />)}
             </div>
-    );
+            <div className='playback-state' />
+        </div>);
     }
 }
 
@@ -89,5 +41,4 @@ PresenJson.defaultProps = {
     autoPlay: false
 };
 
-PresenJson.propTypes = {
-};
+export default PresenJson;

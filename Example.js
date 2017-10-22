@@ -2,6 +2,7 @@ import React from 'react';
 
 import PresenJson from './src/PresenJson';
 import Clip from './src/Clip';
+import Track from './src/Track';
 import Scene from './src/Scene';
 import Audio from './src/Audio';
 import Image from './src/Image';
@@ -25,23 +26,40 @@ const Scene2 = (props) => {
     );
 }
 
+const Background = (props) => {
+    return (
+        <Scene>
+            <h1>Hi</h1>
+            <Audio play={props.onScreen && !props.paused} src='epic.mp3' />
+        </Scene>
+    );
+}
+
 export default () => {
     return (
         <PresenJson debug >
-            <Clip length={150} component={Scene1} offset={121} pic={2} />
-            <Clip length={200} />
-            <Clip length={150} component={Scene1} offset={122} pic={1} />
-            <Clip length={150} />
-            <Clip length={150} component={Scene1} offset={123} pic={4} />
-            <Clip length={100} />
-            <Clip length={150} component={Scene1} offset={124} pic={5} />
-            <Clip length={80} />
-            <Clip length={150} component={Scene1} offset={125} pic={4} />
-            <Clip length={60} />
-            <Clip length={150} component={Scene1} offset={125} pic={1} />
-            <Clip length={50} />
-            <Clip length={20000} component={Scene1} offset={129} horn />
-            <Clip length={20000} component={Scene2} offset={5} horn />
+            <Track background>
+                <Clip component={Background} length={30000} />
+            </Track>
+            <Track>
+                <Clip length={150} component={Scene1} offset={121} pic={2} />
+                <Clip length={200} />
+                <Clip length={150} component={Scene1} offset={122} pic={1} />
+                <Clip length={150} />
+                <Clip length={150} component={Scene1} offset={123} pic={4} />
+                <Clip length={100} />
+                <Clip length={150} component={Scene1} offset={124} pic={5} />
+                <Clip length={80} />
+                <Clip length={150} component={Scene1} offset={125} pic={4} />
+                <Clip length={60} />
+                <Clip length={150} component={Scene1} offset={125} pic={1} />
+                <Clip length={50} />
+                <Clip length={20000} component={Scene1} offset={129} horn />
+                <Clip length={20000} component={Scene2} offset={5} horn />
+            </Track>
+            <Track foreground>
+                <Clip component={Background} length={30000} />
+            </Track>
         </PresenJson>
     );
 }
