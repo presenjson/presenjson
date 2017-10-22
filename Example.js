@@ -21,7 +21,7 @@ const Scene1 = (props) => {
 const Scene2 = (props) => {
     return (
         <Scene>
-            <Video play={props.onScreen && !props.paused} src={`http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4#t=${props.offset}`} />
+            <Video play={props.onScreen && !props.paused} fullScreen src='video.mp4'/>
         </Scene>
     );
 }
@@ -42,23 +42,7 @@ export default () => {
                 <Clip component={Background} length={30000} />
             </Track>
             <Track>
-                <Clip length={150} component={Scene1} offset={121} pic={2} />
-                <Clip length={200} />
-                <Clip length={150} component={Scene1} offset={122} pic={1} />
-                <Clip length={150} />
-                <Clip length={150} component={Scene1} offset={123} pic={4} />
-                <Clip length={100} />
-                <Clip length={150} component={Scene1} offset={124} pic={5} />
-                <Clip length={80} />
-                <Clip length={150} component={Scene1} offset={125} pic={4} />
-                <Clip length={60} />
-                <Clip length={150} component={Scene1} offset={125} pic={1} />
-                <Clip length={50} />
-                <Clip length={20000} component={Scene1} offset={129} horn />
-                <Clip length={20000} component={Scene2} offset={5} horn />
-            </Track>
-            <Track foreground>
-                <Clip component={Background} length={30000} />
+                <Clip length={20000} component={Scene2} />
             </Track>
         </PresenJson>
     );
