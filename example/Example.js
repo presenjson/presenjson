@@ -1,12 +1,12 @@
 import React from 'react';
 
-import PresenJson from './src/PresenJson';
-import Clip from './src/Clip';
-import Track from './src/Track';
-import Scene from './src/Scene';
-import Audio from './src/Audio';
-import Image from './src/Image';
-import Video from './src/Video';
+import PresenJson from '../src/PresenJson';
+import Clip from '../src/Clip';
+import Track from '../src/Track';
+import Scene from '../src/Scene';
+import Audio from '../src/Audio';
+import Image from '../src/Image';
+import Video from '../src/Video';
 
 const Scene1 = (props) => {
     return (

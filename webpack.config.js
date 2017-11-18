@@ -1,9 +1,9 @@
 var path = require('path');
 
 var clientConfig = {
-    entry: './index.js',
+    entry: './example/index.js',
     output: {
-       path: path.join(__dirname, 'build/'),
+       path: path.join(__dirname, 'example/build/'),
        filename: 'bundle.js',
        publicPath: './'
      },
