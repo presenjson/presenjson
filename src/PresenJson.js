@@ -26,10 +26,12 @@ class PresenJson extends Component {
             <div className='layers'>
                 {layers.map((track, i) => <Layer
                     {...track.props}
+                    data={this.props.data}
                     paused={this.state.paused}
                     startAt={this.props.startAt}
                     key={i} />)}
             </div>
+            {this.state.initial && this.props.poster && <div className='poster'>{this.props.poster(this.props)}</div>}
             <div className='playback-state' />
         </div>);
     }
@@ -38,7 +40,8 @@ class PresenJson extends Component {
 PresenJson.defaultProps = {
     startAt: 0,
     debug: false,
-    autoPlay: false
+    autoPlay: false,
+    data: {}
 };
 
 export default PresenJson;

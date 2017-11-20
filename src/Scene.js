@@ -1,10 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import cx from 'classnames';
 
-const Scene = (props) => {
-    return (<div className='clip'>
-    {props.children}
-    </div>);
+const Scene = ({ children, ...rest }) => {
+    const classes = cx({
+        scene: true,
+        ...rest
+    });
+    return <div className={classes}>{children}</div>;
 }
 
 Scene.propTypes = {

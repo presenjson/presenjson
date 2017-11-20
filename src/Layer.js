@@ -71,6 +71,7 @@ export default class Layer extends Component {
                 {currentBucket.map((i) =>
                     <Screen key={`screen-${i}`} i={i}
                         {...this.clips[i].props}
+                        data={this.props.data}
                         paused={this.props.paused}
                         onScreen={this.state.onScreen === i} />
             )}

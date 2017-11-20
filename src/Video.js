@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react';
+import cx from 'classnames';
 
 class Video extends PureComponent {
     componentDidMount() {
@@ -24,10 +25,11 @@ class Video extends PureComponent {
     }
 
     render() {
-        const { src, play, fullScreen, playbackRate, ...rest } = this.props;
+        const { src, play, playbackRate, ...rest } = this.props;
+        const classes = cx({ ...rest, video: true });
         return (
-            <video ref={(_) => (this.video = _)} {...rest}
-                className={`video ${fullScreen && 'fullscreen'}`}>
+            <video ref={(_) => (this.video = _)}
+                className={classes}>
               {src && <source src={src} type='video/mp4' />}
               {this.props.children}
           </video>

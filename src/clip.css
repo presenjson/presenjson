@@ -1,4 +1,4 @@
-.clip {
+.scene {
     z-index: 100;
     width: 100%;
     height: 100%;
@@ -8,42 +8,71 @@
     color: #FFFFFF;
 
     display: flex;
+    flex-flow: row wrap;
     align-items: center;
+    justify-content: center;
     align-content: center;
     text-align: center;
 
     font-size: 40px;
     text-transform: uppercase;
+    background: #000;
 }
 
+.light {
+    background: #FFF;
+}
 
-.clip h1 {
+.blur {
+    filter: blur(3px);
+    transform: scale(1.1);
+    overflow: hidden;
+}
+
+.scene h1 {
     width: 100%;
 }
 
+.scene > * {
+    z-index: 1;
+}
+
 .presenjson {
-    background: black;
     width: 100%;
     height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
+    text-align: center;
     position: absolute;
     left: 0;
     right: 0;
     top: 0;
 }
 
-.presenjson .clip {
+.presenjson .scene {
     display: none;
     z-index: 10;
 }
 
-.presenjson .is-on-screen > .clip {
+.presenjson .is-on-screen > .scene {
     z-index: 1000;
-    display: block;
+    display: flex;
 }
 
+.img {
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.contain {
+    background-size: contain;
+}
+
+.cover {
+    background-size: cover;
+}
 
 .img.fullscreen {
     position: absolute;
@@ -55,6 +84,7 @@
     width: 100%;
     background-position: center;
     background-size: cover;
+    z-index: 0;
 }
 
 .video.fullscreen {
@@ -66,6 +96,7 @@
     height: 100%;
     width: 100%;
     object-fit: cover;
+    z-index: 0;
 }
 
 @keyframes fadeout {
@@ -88,7 +119,21 @@
     }
 }
 
+@keyframes approach {
+    0% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(1.5);
+    }
+}
+
+.poster {
+    position: absolute;
+}
+
 .playback-state {
+    position: absolute;
     opacity: .6;
     z-index: 2000;
     border-left: 60px solid white;
@@ -141,4 +186,24 @@
 
 .foreground {
     z-index: 20;
+}
+
+.paused * {
+    -webkit-animation-play-state: paused !important;
+    -moz-animation-play-state: paused !important;
+    -o-animation-play-state: paused !important;
+    animation-play-state: paused !important;
+}
+
+.approach {
+    animation: approach 7s ease-out;
+    animation-fill-mode: forwards;
+}
+
+
+.container {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
 }
