@@ -1,14 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import cx from 'classnames';
+import Container from './Container';
 
-const Scene = ({ children, ...rest }) => {
-    const classes = cx({
-        scene: true,
-        ...rest
-    });
-    return <div className={classes}>{children}</div>;
-}
+const Scene = ({ children, length, ...rest }) =>  <Container {...rest} scene>{children}</Container>;
 
 Scene.propTypes = {
     length: PropTypes.number

@@ -1,5 +1,4 @@
 import React, { PureComponent } from 'react';
-import cx from 'classnames';
 
 class Video extends PureComponent {
     componentDidMount() {
@@ -25,11 +24,10 @@ class Video extends PureComponent {
     }
 
     render() {
-        const { src, play, playbackRate, ...rest } = this.props;
-        const classes = cx({ ...rest, video: true });
+        const { src, play, playbackRate, className = '', ...rest } = this.props;
         return (
             <video ref={(_) => (this.video = _)}
-                className={classes}>
+                className={`video ${className}`}>
               {src && <source src={src} type='video/mp4' />}
               {this.props.children}
           </video>

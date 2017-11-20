@@ -9,6 +9,7 @@ import Audio from '../src/Audio';
 import Image from '../src/Image';
 import Video from '../src/Video';
 import Container from '../src/Container';
+import Fx from '../src/Fx';
 
 console.log(data);
 
@@ -21,14 +22,16 @@ const Start = (props) => {
 
     return (
         <Scene light>
-            <Video play={props.onScreen && !props.paused}
-                fullscreen blur src='video.mp4' volume={0}
-            />
-        <Container approach>
-            <Image src='hc_logo_anim.svg' aspectRatio='4:3' style={style} />
-            <Image src={data.cruiseline.logo} style={style} />
-        </Container>
-        <Audio play={props.onScreen && !props.paused} src={`horn.mp3#t=1`} />
+            <Container blur fullscreen>
+                <Fx fadeOut delay='3s'>
+                    <Video play={props.onScreen && !props.paused} src='video.mp4' volume={0} />
+                </Fx>
+            </Container>
+            <Fx approach fadeInOut>
+                <Image src='hc_logo_anim.svg' aspectRatio='4:3' style={style} />
+                <Image src={data.cruiseline.logo} style={style} />
+            </Fx>
+            <Audio play={props.onScreen && !props.paused} src={`horn.mp3#t=1`} />
         </Scene>
     );
 }
