@@ -21,6 +21,7 @@ class PresenJson extends Component {
             initial: this.state.initial
         });
         const layers = R.flatten(R.of(this.props.children));
+        const Poster = this.props.poster;
 
         return (<div className={classNames} onClick={this.togglePlayback}>
             <div className='layers'>
@@ -31,7 +32,7 @@ class PresenJson extends Component {
                     startAt={this.props.startAt}
                     key={i} />)}
             </div>
-            {this.state.initial && this.props.poster && <div className='poster'>{this.props.poster(this.props)}</div>}
+            {this.state.initial && Poster && <div className='poster'><Poster {...this.props} /></div>}
             <div className='playback-state' />
         </div>);
     }
