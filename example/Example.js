@@ -22,50 +22,27 @@ const Start = (props) => {
 
     return (
         <Scene light>
-            <Style blur fullscreen>
-                <Animated fadeOut delay='3s'>
-                    <Video play={props.onScreen && !props.paused} src='video.mp4' volume={0} />
-                </Animated>
-            </Style>
+            <Animated fadeOut delay='3s'>
+                <Style blur fullscreen>
+                    <Video play={props.play} src='video.mp4' volume={0} />
+                </Style>
+            </Animated>
             <Animated approach fadeInOut>
-                <Image src='hc_logo_anim.svg' aspectRatio='4:3' style={style} />
+                <Image src='hc_logo_anim.svg' style={style} />
                 <Image src={data.cruiseline.logo} style={style} />
             </Animated>
-            <Audio play={props.onScreen && !props.paused} src={`horn.mp3#t=1`} />
+            <Audio play={props.play} src={`horn.mp3#t=1`} />
         </Scene>
     );
 }
 
-const Scene1 = (props) => {
-    return (
-        <Scene>
-            <Image fullscreen src={`${props.pic}.jpg`} />
-            <Audio play={props.onScreen && !props.paused} src={`croud.mp3#t=${props.offset}`} volume={props.horn && 0.5 || 1} />
-            {props.horn && <Audio play={props.onScreen && !props.paused} src={`horn.mp3#t=2`} />}
-        </Scene>
-    );
-}
-
-const Scene2 = (props) => {
-    return (
-        <Scene>
-            <Video play={props.onScreen && !props.paused} fullscreen src='video.mp4' />
-        </Scene>
-    );
-}
-
-const Poster = (props) => {
-    return (
-        <h1>{props.data.name}</h1>
-    );
-}
+const Poster = (props) => <h1>{props.data.name}</h1>;
 
 export default () => {
     return (
-        <PresenJson debug poster={Poster} data={data}>
+        <PresenJson poster={Poster} data={data}>
             <Track>
                 <Clip length={50000} component={Start} />
-                <Clip length={20000} component={Scene2} />
             </Track>
         </PresenJson>
     );
