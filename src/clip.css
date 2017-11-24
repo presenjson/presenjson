@@ -24,7 +24,6 @@
     background: #FFF;
 }
 
-
 .scene h1 {
     width: 100%;
 }
@@ -152,8 +151,31 @@
 
 .playback-state {
     position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     opacity: .6;
     z-index: 2000;
+    animation: fadeout .50s;
+    animation-fill-mode: forwards;
+    background: black;
+    padding: 20px;
+    border-radius: 50%;
+    transition: all .25s ease-in-out;            
+}
+
+.playback-state:after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 0;
+    padding-top: 100%;
+}
+
+.playback-state:before {
+    display: block;
+    content: ' ';
+    position: relative;
     border-left: 60px solid white;
     border-top: 40px solid transparent;
     border-bottom: 40px solid transparent;
@@ -161,10 +183,9 @@
     width: 0;
     height: 0;
     box-sizing: border-box;
-    border-radius: 5px;
-    transition: all .25s ease-in-out;
-    animation: fadeout .50s;
-    animation-fill-mode: forwards;
+    margin-left: 20px;
+    margin-right: 0px;
+    transition: all .25s ease-in-out;        
 }
 
 .initial .playback-state {
@@ -172,17 +193,22 @@
 }
 
 .paused .playback-state {
+    transition: none;
+    animation: none;
+}
+
+.paused .playback-state:before {
     border-left: 20px solid white;
     border-right: 20px solid white;
     border-top: 0px solid transparent;
     border-bottom: 0px solid transparent;
     width: 60px;
     height: 60px;
-    transition: none;
-    animation: none;
+    margin: 12px;
+    transition: none;    
 }
 
-.buffering .playback-state {
+.buffering .playback-state:before {
     border-left: 20px solid white;
     border-right: 20px solid white;
     border-top: 0px solid transparent;
@@ -190,6 +216,7 @@
     border-radius: 50%;
     width: 60px;
     height: 60px;
+    margin: 0;
     transition: all .25s linear;
     animation: rotate .7s infinite ease-in-out;
 }
