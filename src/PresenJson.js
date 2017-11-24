@@ -30,6 +30,7 @@ class PresenJson extends Component {
                     data={this.props.data}
                     paused={this.state.paused}
                     startAt={this.props.startAt}
+                    layer={i}
                     key={i} />)}
             </div>
             {this.state.initial && Poster && <div className='poster'><Poster {...this.props} /></div>}

@@ -66,14 +66,16 @@ export default class Layer extends Component {
             layer: true,
             ...R.pick([ 'background', 'foreground' ], this.props)
         });
+
         return (
             <div className={classNames}>
                 {currentBucket.map((i) =>
-                    <Screen key={`screen-${i}`} i={i}
+                    <Screen
                         {...this.clips[i].props}
                         data={this.props.data}
                         paused={this.props.paused}
-                        onScreen={this.state.onScreen === i} />
+                        onScreen={this.state.onScreen === i}
+                        key={`${this.props.layer}-screen-${i}`} i={i} />
             )}
             </div>
     );

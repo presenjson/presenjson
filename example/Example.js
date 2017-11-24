@@ -22,18 +22,28 @@ const Start = (props) => {
 
     return (
         <Scene light>
-            <Animated fadeOut delay='3s'>
+            <Animated fadeOut delay='1s'>
                 <Style blur fullscreen>
                     <Video play={props.play} src='video.mp4' volume={0} />
                 </Style>
+                <Animated approach>
+                    <Image src='hc_logo_anim.svg' style={style} />
+                    <Image src={data.cruiseline.logo} style={style} />
+                </Animated>
             </Animated>
-            <Animated approach fadeInOut>
-                <Image src='hc_logo_anim.svg' style={style} />
-                <Image src={data.cruiseline.logo} style={style} />
-            </Animated>
-            <Audio play={props.play} src={`horn.mp3#t=1`} />
+            <Audio play={props.play} src={`horn.mp3?#t=1`} />
         </Scene>
     );
+}
+
+const Background = (props) => {
+    return (
+        <Audio play={props.play} src={`bensound-clapandyell.mp3`} />
+    );
+}
+
+const Intro = (props) => {
+    return <h1>SOMMER 2018</h1>;
 }
 
 const Poster = (props) => <h1>{props.data.name}</h1>;
@@ -42,7 +52,11 @@ export default () => {
     return (
         <PresenJson poster={Poster} data={data}>
             <Track>
-                <Clip length={50000} component={Start} />
+                <Clip delay={2500} length={120000} component={Background} />
+            </Track>
+            <Track>
+                <Clip length={3600} component={Start} />
+                <Clip length={5000} component={Intro} />
             </Track>
         </PresenJson>
     );

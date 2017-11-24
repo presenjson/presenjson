@@ -2,7 +2,7 @@ import R from 'ramda';
 
 const [ POSITION, LENGTH ] = [ 0, 1 ];
 const fullLength = R.pipe(
-    R.map(R.path([ 'props', 'length' ])),
+    R.map((o) => o.props.length + o.props.delay),
     R.sum
 );
 
@@ -14,7 +14,7 @@ export default (children) => {
     const lengths = R.map(R.path([ 'props', 'length' ]), children);
 
     const positions = R.map((child) => {
-        const clipStarts = pos;
+        const clipStarts = pos + child.props.delay;
         pos += child.props.length;
         return clipStarts;
     }, children);
@@ -35,5 +35,7 @@ export default (children) => {
         }
     });
 
-    return { buckets: bucks, positions, lengths, length };
+    const buckets = R.map(R.uniq, bucks); // duplicate entries?
+
+    return { buckets, positions, lengths, length };
 };
