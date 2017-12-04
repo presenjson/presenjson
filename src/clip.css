@@ -6,7 +6,7 @@
     position: absolute;
     left: 0;
     top: 0;
-    color: #FFFFFF;
+    color: #FFF;
 
     display: flex;
     flex-flow: row wrap;
@@ -22,6 +22,7 @@
 
 .light {
     background: #FFF;
+    color: #000;
 }
 
 .scene h1 {
@@ -51,7 +52,7 @@
     z-index: 10;
 }
 
-.presenjson .is-on-screen > .scene {
+.presenjson .is-on-screen > .scene, .poster > .scene {
     z-index: 1000;
     display: flex;
 }
@@ -148,6 +149,8 @@
 
 .poster {
     position: absolute;
+    width: 100%;
+    height: 100%;
 }
 
 .playback-state {

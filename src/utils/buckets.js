@@ -1,4 +1,4 @@
-import R from 'ramda';
+import * as R from 'ramda';
 
 const [ POSITION, LENGTH ] = [ 0, 1 ];
 const fullLength = R.pipe(

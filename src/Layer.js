@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import R from 'ramda';
+import * as R from 'ramda';
 import cx from 'classnames';
 import Screen from './Screen';
+import { Group } from './ClipGroup';
 import buckets from './utils/buckets';
 
 export default class Layer extends Component {
@@ -30,11 +31,13 @@ export default class Layer extends Component {
     }
 
     _setClips = (children) => {
-        console.log(children);
         const _children = R.pipe(
             R.of,
             R.flatten,
+            R.map(R.when((x) => (x.type.name === 'ClipGroup'), (x) => Group(x.props))),
+            R.flatten
         )(children);
+
         this.clips = _children;
     }
 

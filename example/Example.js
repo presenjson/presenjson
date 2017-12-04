@@ -3,6 +3,7 @@ import React from 'react';
 import data from './data.json';
 import PresenJson from '../src/PresenJson';
 import Clip from '../src/Clip';
+import ClipGroup from '../src/ClipGroup';
 import Track from '../src/Track';
 import Scene from '../src/Scene';
 import Audio from '../src/Audio';
@@ -42,21 +43,53 @@ const Background = (props) => {
     );
 }
 
+const Intro2 = (props) => {
+    console.log(props)
+
+    return (
+    <Scene light>
+        <h2>„{props.data.name}“</h2>
+        <h4>{props.data.duration} Tage {props.data.destination.name}</h4>
+    </Scene>);
+}
 const Intro = (props) => {
-    return <h1>SOMMER 2018</h1>;
+    return <Scene light>
+            <Animated approach>
+                <h1>SOMMER 2018</h1>
+            </Animated>
+    </Scene>;
 }
 
-const Poster = (props) => <h1>{props.data.name}</h1>;
+const Poster = (props) => {
+    return (
+        <Scene>
+            <Style fullscreen blur>
+                <Image src={props.data.ship.picture} />
+            </Style>
+            <h4>{props.data.name}</h4>
+        </Scene>
+    );
+};
+
+const Itinerary = (props) => {
+    return (
+        <Scene light>
+            Tag {props.day} in {props.itinerary[0].portName}
+        </Scene>
+    );
+}
 
 export default () => {
     return (
-        <PresenJson poster={Poster} data={data}>
+        <PresenJson poster={Poster} data={data} >
             <Track>
                 <Clip delay={2500} length={120000} component={Background} />
             </Track>
             <Track>
                 <Clip length={3600} component={Start} />
-                <Clip length={5000} component={Intro} />
+                <Clip length={2000} component={Intro} />
+                <Clip length={2000} component={Intro2} />
+                <ClipGroup map={data.itinerary} component={Itinerary} length={1000} />
             </Track>
         </PresenJson>
     );
