@@ -6,6 +6,10 @@ export const Group = ({ map, ...props }) => {
     return map.map((x) => <Clip {...props} {...x} />);
 };
 
+Group.defaultProps = {
+    map: []
+};
+
 class ClipGroup extends Component {
     render = () => false
 }
