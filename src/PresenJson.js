@@ -15,17 +15,18 @@ class PresenJson extends Component {
     }
 
     render() {
-        const classNames = cx({
-            presenjson: true,
+        const classNames = cx('presenjson', {
             paused: this.state.paused && !this.state.initial,
             initial: this.state.initial
         });
         const layers = R.flatten(R.of(this.props.children));
+        const soloLayers = layers.filter(R.pathEq([ 'props', 'solo' ], true));
+        const layersToRender = soloLayers.length && soloLayers || layers;
         const Poster = this.props.poster;
 
         return (<div className={classNames} onClick={this.togglePlayback}>
             <div className='layers'>
-                {layers.map((track, i) => <Layer
+                {layersToRender.map((track, i) => <Layer
                     {...track.props}
                     data={this.props.data}
                     paused={this.state.paused}

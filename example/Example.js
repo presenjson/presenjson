@@ -10,6 +10,7 @@ import Audio from '../src/Audio';
 import Image from '../src/Image';
 import Video from '../src/Video';
 import Style from '../src/Style';
+import Stack from '../src/Stack';
 import Animated from '../src/Animated';
 
 console.log(data);
@@ -79,9 +80,25 @@ const Itinerary = (props) => {
     );
 }
 
+const Cabins = (props) => {
+    return (
+        <Scene>
+            <Stack play={props.play} stepLength={400}>
+                <Audio src='i1.ogg' />
+                <Audio src='i2.ogg' />
+                <Audio src='i3.ogg' />
+                <Audio src='i4.ogg' />
+            </Stack>
+        </Scene>
+    );
+}
+
 export default () => {
     return (
         <PresenJson poster={Poster} data={data} >
+            <Track solo>
+                <Clip component={Cabins} length={20000} />
+            </Track>
             <Track>
                 <Clip delay={2500} length={120000} component={Background} />
             </Track>
