@@ -83,12 +83,47 @@ const Itinerary = (props) => {
 const Cabins = (props) => {
     return (
         <Scene>
+            <Animated blur delay='1s'>
+                <Style fullscreen>
+                    <iframe src='file:///Users/jduncan/dev/startpage/index.html'></iframe>
+                </Style>
+            </Animated>
             <Stack play={props.play} stepLength={400}>
-                <Audio src='i1.ogg' />
-                <Audio src='i2.ogg' />
-                <Audio src='i3.ogg' />
-                <Audio src='i4.ogg' />
+                <Audio src='' />
+                <Audio src='' />
+                <Audio src='' />
+                <Audio src='i1.ogg#t=0.1' />
+                <Audio src='i2.ogg#t=0.3' />
+                <Audio src='i3.ogg#t=0.35' />
+                <Audio src='i4.ogg#t=0.13' />
             </Stack>
+            <div className='cabin-wrap'>
+                <Stack play={props.play} stepLength={400}>
+                    <Audio src='' />
+                    <Audio src='' />
+                    <Audio src='' />
+                    <Animated land className='cabin'>
+                        <h3>DO IT</h3>
+                        <div className='price'>ab 259 €</div>
+                        <span>Innenkabine pro Person</span>
+                    </Animated>
+                    <Animated land className='cabin'>
+                        <h3>SEE IT</h3>
+                        <div className='price'>ab 379 €</div>
+                        <span>Außenkabine  pro Person</span>
+                    </Animated>
+                    <Animated land className='cabin'>
+                        <h3>FEEL IT</h3>
+                        <div className='price'>ab 829 €</div>
+                        <span>Balkonkabine pro Person</span>
+                    </Animated>
+                    <Animated land className='cabin'>
+                        <h3>LIVE IT</h3>
+                        <div className='price'>ab 3.259 €</div>
+                        <span>Suite pro Person</span>
+                    </Animated>
+                </Stack>
+            </div>
         </Scene>
     );
 }
