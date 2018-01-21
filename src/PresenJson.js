@@ -20,6 +20,16 @@ class PresenJson extends Component {
         this._setLayers();
     }
 
+    componentDidMount() {
+        const paused = !(this.props.play && this.state.paused);
+        this.setState({ paused, initial: !this.props.play });
+    }
+
+    componentWillReceiveProps(nextProps) {
+        const paused = !(this.props.play && this.state.paused);
+        this.setState({ paused, initial: !this.props.play });
+    }
+
     _setLayers = () => {
         const layers = R.flatten(R.of(this.props.children));
         const soloLayers = layers.filter(R.pathEq([ 'props', 'solo' ], true));

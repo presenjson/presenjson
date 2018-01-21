@@ -18,14 +18,10 @@ export default class Layer extends Component {
             buckets: []
         }
 
-        buckets(this.clips).then((state) => {
+        buckets(this.clips, this.props.data).then((state) => {
             this.setState(state);
             this.props.onLoad(state.length);
         });
-    }
-
-    componentWillMount = async () => {
-        console.log('###')
     }
 
     componentDidMount() {
@@ -36,7 +32,7 @@ export default class Layer extends Component {
 
     componentWillReceiveProps(nextProps){
         this._setClips(nextProps.children);
-        buckets(this.clips).then((state) => {
+        buckets(this.clips, nextProps.data).then((state) => {
             this.setState(state);
         });
     }

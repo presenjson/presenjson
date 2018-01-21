@@ -13,6 +13,9 @@ import Style from '../src/Style';
 import Stack from '../src/Stack';
 import Animated from '../src/Animated';
 
+
+import { getLength } from '../src/utils/buckets';
+
 console.log(data);
 
 const Start = (props) => {
@@ -128,11 +131,25 @@ const Cabins = (props) => {
     );
 }
 
-export default () => {
+const Y = ({ onLoad, play }) => {
     return (
-        <PresenJson poster={Poster} data={data}>
+        <PresenJson poster={Poster} data={data} onLoad={onLoad} play={play}>
             <Track>
-                <Clip component={Cabins} length={20000} />
+                <Clip length={3600} component={Start} />
+                <Clip length={2000} component={Intro} />
+                <Clip length={2000} component={Intro2} />
+            </Track>
+        </PresenJson>
+    );
+}
+
+const X = ({ onLoad }) => {
+    return (
+        <PresenJson poster={Poster} data={data} onLoad={onLoad}>
+            <Track solo>
+                <Clip component={Cabins} length={2000} />
+                <Clip component={Y} />
+                <Clip length={120000} component={Background} />
             </Track>
             <Track>
                 <Clip delay={2500} length={120000} component={Background} />
@@ -146,3 +163,5 @@ export default () => {
         </PresenJson>
     );
 }
+
+export default X;
