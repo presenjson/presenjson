@@ -5,9 +5,30 @@ import cx from 'classnames';
 import Layer from './Layer';
 
 class PresenJson extends Component {
+    _layersToRender = []
+    _layersLoaded = 0
+    _length = 0
+
     state = {
         paused: !this.props.autoPlay,
-        initial: true
+        initial: true,
+        length: 0
+    }
+
+    constructor(...args) {
+        super(...args);
+        this._setLayers();
+    }
+
+    _setLayers = () => {
+        const layers = R.flatten(R.of(this.props.children));
+        const soloLayers = layers.filter(R.pathEq([ 'props', 'solo' ], true));
+        this._layersToRender = soloLayers.length && soloLayers || layers;
+    }
+
+    onLoad = (length) => {
+        this._length = Math.max(length, this._length);
+        return ++this._layersLoaded === this._layersToRender.length && this.props.onLoad(this._length);
     }
 
     togglePlayback = () => {
@@ -19,19 +40,17 @@ class PresenJson extends Component {
             paused: this.state.paused && !this.state.initial,
             initial: this.state.initial
         });
-        const layers = R.flatten(R.of(this.props.children));
-        const soloLayers = layers.filter(R.pathEq([ 'props', 'solo' ], true));
-        const layersToRender = soloLayers.length && soloLayers || layers;
         const Poster = this.props.poster;
 
         return (<div className={classNames} onClick={this.togglePlayback}>
             <div className='layers'>
-                {layersToRender.map((track, i) => <Layer
+                {this._layersToRender.map((track, i) => <Layer
                     {...track.props}
                     data={this.props.data}
                     paused={this.state.paused}
                     startAt={this.props.startAt}
                     layer={i}
+                    onLoad={this.onLoad}
                     key={i} />)}
             </div>
             {this.state.initial && Poster && <div className='poster'><Poster {...this.props} /></div>}
@@ -44,7 +63,8 @@ PresenJson.defaultProps = {
     startAt: 0,
     debug: false,
     autoPlay: false,
-    data: {}
+    data: {},
+    onLoad: () => {}
 };
 
 export default PresenJson;

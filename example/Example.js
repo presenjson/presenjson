@@ -130,8 +130,8 @@ const Cabins = (props) => {
 
 export default () => {
     return (
-        <PresenJson poster={Poster} data={data} >
-            <Track solo>
+        <PresenJson poster={Poster} data={data}>
+            <Track>
                 <Clip component={Cabins} length={20000} />
             </Track>
             <Track>

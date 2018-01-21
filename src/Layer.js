@@ -15,8 +15,17 @@ export default class Layer extends Component {
         this.state = {
             bucket: Math.ceil(this.time / 1000),
             onScreen: [],
-            ...buckets(this.clips)
+            buckets: []
         }
+
+        buckets(this.clips).then((state) => {
+            this.setState(state);
+            this.props.onLoad(state.length);
+        });
+    }
+
+    componentWillMount = async () => {
+        console.log('###')
     }
 
     componentDidMount() {
@@ -27,7 +36,9 @@ export default class Layer extends Component {
 
     componentWillReceiveProps(nextProps){
         this._setClips(nextProps.children);
-        this.setState({ ...buckets(this.clips) })
+        buckets(this.clips).then((state) => {
+            this.setState(state);
+        });
     }
 
     _setClips = (children) => {
