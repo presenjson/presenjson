@@ -268,3 +268,18 @@
     justify-content: center;
     align-items: center;
 }
+
+/* map component */
+.map-wrapper {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    display: block;
+    left: 0;
+    top: 0;
+}
+
+.map-wrapper canvas {
+    position: absolute;
+    left: 0;
+}

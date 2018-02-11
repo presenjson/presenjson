@@ -1,6 +1,7 @@
 import React from 'react';
 
 import data from './data.json';
+import route from './route.json';
 import PresenJson from '../src/PresenJson';
 import Clip from '../src/Clip';
 import ClipGroup from '../src/ClipGroup';
@@ -11,6 +12,7 @@ import Image from '../src/Image';
 import Video from '../src/Video';
 import Style from '../src/Style';
 import Stack from '../src/Stack';
+import RouteMap from '../src/RouteMap';
 import Animated from '../src/Animated';
 
 
@@ -143,16 +145,24 @@ const Y = ({ onLoad, play }) => {
     );
 }
 
+const TheMap = (props) => {
+    return (
+        <Scene light>
+            <RouteMap routeGeoJson={route} {...props} />
+        </Scene>
+    );
+}
+
 const X = ({ onLoad }) => {
     return (
         <PresenJson poster={Poster} data={data} onLoad={onLoad}>
-            <Track solo>
+            <Track>
                 <Clip component={Cabins} length={2000} />
                 <Clip component={Y} />
                 <Clip length={120000} component={Background} />
             </Track>
-            <Track>
-                <Clip delay={2500} length={120000} component={Background} />
+            <Track solo>
+                <Clip length={120000} component={TheMap} />
             </Track>
             <Track>
                 <Clip length={3600} component={Start} />
