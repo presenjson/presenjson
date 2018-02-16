@@ -43,7 +43,7 @@ const Start = (props) => {
 
 const Background = (props) => {
     return (
-        <Audio play={props.play} src={`bensound-clapandyell.mp3`} />
+        <Audio play={props.play} onLoad={props.onLoad} src={`bensound-clapandyell.mp3`} />
     );
 }
 
@@ -154,12 +154,12 @@ const TheMap = (props) => {
 const X = ({ onLoad }) => {
     return (
         <PresenJson poster={Poster} data={data} onLoad={onLoad}>
-            <Track>
+            <Track solo>
+                <Clip component={Background} />
                 <Clip component={Cabins} length={2000} />
                 <Clip component={Y} />
-                <Clip length={120000} component={Background} />
             </Track>
-            <Track solo>
+            <Track>
                 <Clip length={120000} component={TheMap} />
             </Track>
             <Track>

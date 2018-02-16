@@ -1,6 +1,19 @@
 import React, { PureComponent } from 'react';
 
 class Audio extends PureComponent {
+    constructor(...args) {
+        super(...args);
+
+        if (!this.props.length && this.props.src && this.props.onLoad) {
+            const a = document.createElement('audio');
+            a.onloadedmetadata = (e) => {
+                this.props.onLoad(a.duration * 1000);
+                a.src = '';
+            }
+            a.src = this.props.src;
+        }
+    }
+
     componentDidMount() {
         const action = (this.props.play && this.audio.paused && 'play' || 'pause');
         this.audio[action]();
@@ -12,6 +25,7 @@ class Audio extends PureComponent {
             const action = (nextProps.play && this.audio.paused && 'play' || 'pause');
             this.audio[action]();
         }
+
         if(nextProps.volume !== this.props.volume) {
             this.audio.volume = nextProps.volume;
         }
