@@ -16,8 +16,6 @@ import RouteMap from '../src/RouteMap';
 import Animated from '../src/Animated';
 
 
-import { getLength } from '../src/utils/buckets';
-
 console.log(data);
 
 const Start = (props) => {
@@ -59,11 +57,11 @@ const Intro2 = (props) => {
     </Scene>);
 }
 const Intro = (props) => {
-    return <Scene light>
+    return (<Scene light>
             <Animated approach>
                 <h1>SOMMER 2018</h1>
             </Animated>
-    </Scene>;
+    </Scene>);
 }
 
 const Poster = (props) => {
