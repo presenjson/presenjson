@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 
 class Video extends PureComponent {
     componentDidMount() {
@@ -30,6 +31,7 @@ class Video extends PureComponent {
             <video
                 ref={(_) => (this.video = _)}
                 className={`video ${className}`}
+                {...rest}
             >
                 {src && <source src={src} type="video/mp4" />}
                 {this.props.children}
@@ -37,6 +39,15 @@ class Video extends PureComponent {
         );
     }
 }
+
+Video.propTypes = {
+    play: PropTypes.bool,
+    src: PropTypes.string,
+    playbackRate: PropTypes.number,
+    className: PropTypes.string,
+    children: PropTypes.node,
+    volume: PropTypes.number
+};
 
 Video.defaultProps = {
     volume: 1,

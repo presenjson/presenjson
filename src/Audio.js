@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 
 class Audio extends PureComponent {
     constructor(...args) {
@@ -6,7 +7,7 @@ class Audio extends PureComponent {
 
         if (!this.props.length && this.props.src && this.props.onLoad) {
             const a = document.createElement('audio');
-            a.onloadedmetadata = (e) => {
+            a.onloadedmetadata = () => {
                 this.props.onLoad(a.duration * 1000);
                 a.src = '';
             };
@@ -43,6 +44,15 @@ class Audio extends PureComponent {
         );
     }
 }
+
+Audio.propTypes = {
+    src: PropTypes.string,
+    volume: PropTypes.number,
+    children: PropTypes.node,
+    length: PropTypes.number,
+    play: PropTypes.bool,
+    onLoad: PropTypes.func
+};
 
 Audio.defaultProps = {
     volume: 1

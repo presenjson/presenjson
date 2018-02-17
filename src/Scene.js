@@ -9,7 +9,8 @@ const Scene = ({ children, length, ...rest }) => (
 );
 
 Scene.propTypes = {
-    length: PropTypes.number
+    length: PropTypes.number,
+    children: PropTypes.node
 };
 
 Scene.defaultProps = {

@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "webpack --watch",
     "test": "jest",
+    "lint": "eslint src test",
     "format": "prettier --write '{src,test}/**/*.{js,css}'",
     "format:check": "prettier --list-different '{src,test}/**/*.js'"
   },
@@ -25,10 +26,16 @@
     "@babel/preset-react": "^7.0.0-beta.40",
     "@babel/preset-stage-0": "^7.0.0-beta.40",
     "babel-core": "^7.0.0-beta",
+    "babel-eslint": "^8.2.1",
     "babel-loader": "^7.1.2",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "enzyme-to-json": "^3.3.1",
+    "eslint": "^4.18.0",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-react": "^7.6.1",
     "jest": "^22.3.0",
     "prettier": "1.10.2",
     "webpack": "3.11.0"
@@ -36,6 +43,7 @@
   "dependencies": {
     "classnames": "2.2.5",
     "mapbox-gl": "^0.44.1",
+    "prop-types": "^15.6.0",
     "ramda": "0.25.0",
     "react": "16.2.0",
     "react-dom": "16.2.0"

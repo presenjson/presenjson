@@ -5,9 +5,9 @@ import cx from 'classnames';
 import Layer from './Layer';
 
 class PresenJson extends Component {
-    _layersToRender = [];
-    _layersLoaded = 0;
-    _length = 0;
+    layersToRender = [];
+    layersLoaded = 0;
+    length = 0;
 
     state = {
         paused: !this.props.autoPlay,
@@ -17,7 +17,7 @@ class PresenJson extends Component {
 
     constructor(...args) {
         super(...args);
-        this._setLayers();
+        this.setLayers();
     }
 
     componentDidMount() {
@@ -26,21 +26,22 @@ class PresenJson extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        const paused = !(this.props.play && this.state.paused);
+        const paused = !(nextProps.play && this.state.paused);
         this.setState({ paused, initial: !this.props.play });
     }
 
-    _setLayers = () => {
+    setLayers = () => {
         const layers = R.flatten(R.of(this.props.children));
         const soloLayers = layers.filter(R.pathEq(['props', 'solo'], true));
-        this._layersToRender = (soloLayers.length && soloLayers) || layers;
+        this.layersToRender = (soloLayers.length && soloLayers) || layers;
     };
 
     onLoad = (length) => {
-        this._length = Math.max(length, this._length);
+        this.length = Math.max(length, this.length);
+        this.layersLoaded += 1;
         return (
-            ++this._layersLoaded === this._layersToRender.length &&
-            this.props.onLoad(this._length)
+            this.layersLoaded === this.layersToRender.length &&
+            this.props.onLoad(this.length)
         );
     };
 
@@ -58,7 +59,7 @@ class PresenJson extends Component {
         return (
             <div className={classNames} onClick={this.togglePlayback}>
                 <div className="layers">
-                    {this._layersToRender.map((track, i) => (
+                    {this.layersToRender.map((track, i) => (
                         <Layer
                             {...track.props}
                             data={this.props.data}
@@ -81,6 +82,16 @@ class PresenJson extends Component {
         );
     }
 }
+
+PresenJson.propTypes = {
+    poster: PropTypes.node,
+    play: PropTypes.bool,
+    autoPlay: PropTypes.bool,
+    startAt: PropTypes.number,
+    onLoad: PropTypes.func,
+    data: PropTypes.any,
+    children: PropTypes.node
+};
 
 PresenJson.defaultProps = {
     startAt: 0,

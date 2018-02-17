@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import * as R from 'ramda';
 import cx from 'classnames';
 import Screen from './Screen';
@@ -10,7 +11,7 @@ export default class Layer extends Component {
         super(...args);
         this.time = this.props.startAt;
         this.mountedAt = 0;
-        this._setClips(this.props.children);
+        this.setClips(this.props.children);
 
         this.state = {
             bucket: Math.ceil(this.time / 1000),
@@ -31,14 +32,14 @@ export default class Layer extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        this._setClips(nextProps.children);
+        this.setClips(nextProps.children);
         buckets(this.clips, nextProps.data).then((state) => {
             this.setState(state);
         });
     }
 
-    _setClips = (children) => {
-        const _children = R.pipe(
+    setClips = (children) => {
+        const newChildren = R.pipe(
             R.of,
             R.flatten,
             R.map(
@@ -50,15 +51,12 @@ export default class Layer extends Component {
             R.flatten
         )(children);
 
-        this.clips = _children;
+        this.clips = newChildren;
     };
 
-    isOnScreen = (time) => (o) => {
-        return (
-            this.state.positions[o] <= time &&
-            this.state.positions[o] + this.state.lengths[o] >= time
-        );
-    };
+    isOnScreen = (time) => (o) =>
+        this.state.positions[o] <= time &&
+        this.state.positions[o] + this.state.lengths[o] >= time;
 
     loop = () => {
         const current = new Date().valueOf();
@@ -103,4 +101,11 @@ export default class Layer extends Component {
 
 Layer.defaultProps = {};
 
-Layer.propTypes = {};
+Layer.propTypes = {
+    layer: PropTypes.number,
+    startAt: PropTypes.number,
+    paused: PropTypes.bool,
+    onLoad: PropTypes.func,
+    data: PropTypes.any,
+    children: PropTypes.node
+};

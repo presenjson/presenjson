@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import cx from 'classnames';
 import * as styles from './utils/styles';
 
@@ -9,7 +10,7 @@ const getStyles = (classes) => {
     return Object.assign(...individualStyles, {});
 };
 
-export default ({ children, ...rest }) => {
+const Style = ({ children, ...rest }) => {
     const individualStyles = getStyles(rest);
     return (
         <div className={cx(rest, 'container')} style={individualStyles}>
@@ -17,3 +18,9 @@ export default ({ children, ...rest }) => {
         </div>
     );
 };
+
+Style.propTypes = {
+    children: PropTypes.node
+};
+
+export default Style;

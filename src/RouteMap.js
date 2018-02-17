@@ -39,8 +39,7 @@ const lineLayer = {
         'line-width': 3,
         'line-color': '#f03a47',
         'line-opacity': 1,
-        'line-dasharray': [-0.01, 2.0],
-        'line-width': 3
+        'line-dasharray': [-0.01, 2.0]
     }
 };
 
@@ -66,7 +65,7 @@ export default class RouteMap extends Component {
         this.map.addLayer(lineLayer);
     };
 
-    componentDidUpdate(nextProps) {
+    componentDidUpdate() {
         this.map.resize();
         this.fitBounds(
             this.props.routeGeoJson.data.features[0].geometry.coordinates
@@ -96,7 +95,7 @@ export default class RouteMap extends Component {
         }
     };
 
-    fitBounds = (coords, fitBoundsPadding) => {
+    fitBounds = (coords) => {
         const extendBounds = (b, coord) => b.extend(coord);
         if (coords.length) {
             const bounds = coords.reduce(
@@ -115,7 +114,10 @@ export default class RouteMap extends Component {
 }
 
 RouteMap.propTypes = {
-    routeGeoJson: PropTypes.object
+    routeGeoJson: PropTypes.object,
+    paused: PropTypes.bool,
+    name: PropTypes.string,
+    mapConfig: PropTypes.object
 };
 
 RouteMap.defaultProps = {

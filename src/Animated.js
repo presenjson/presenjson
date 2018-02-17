@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const def = {
     approach: '7s ease-out',
@@ -8,7 +9,7 @@ const def = {
     blur: '3s ease-in-out'
 };
 
-export default ({
+const Animated = ({
     children,
     className = '',
     fillMode = 'forwards',
@@ -34,3 +35,14 @@ export default ({
         </div>
     );
 };
+
+Animated.propTypes = {
+    children: PropTypes.node,
+    className: PropTypes.string,
+    fillMode: PropTypes.string,
+    direction: PropTypes.string,
+    count: PropTypes.string,
+    delay: PropTypes.string
+};
+
+export default Animated;

@@ -2,8 +2,21 @@ import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import * as R from 'ramda';
 
-const [POSITION, LENGTH] = [0, 1];
-const fullLength = R.pipe(R.map((o) => o.props.length + o.props.delay), R.sum);
+export const getLength = R.curry(
+    (data, child) =>
+        new Promise((resolve) => {
+            if (child.props.length) {
+                return resolve(child.props.length);
+            }
+
+            const Component = child.props.component;
+            const onLoad = (length) => resolve(length);
+
+            ReactDOMServer.renderToString(
+                <Component {...child.props} data={data} onLoad={onLoad} />
+            );
+        })
+);
 
 export const getLengthsAndPositions = async (components, data) => {
     let pos = 0;
@@ -22,23 +35,8 @@ export const getLengthsAndPositions = async (components, data) => {
     }));
 };
 
-export const getLength = R.curry((data, child) => {
-    return new Promise((resolve, reject) => {
-        if (child.props.length) {
-            return resolve(child.props.length);
-        }
-
-        const Component = child.props.component;
-        const onLoad = (length) => resolve(length);
-
-        ReactDOMServer.renderToString(
-            <Component {...child.props} data={data} onLoad={onLoad} />
-        );
-    });
-});
-
-export default (children, data) => {
-    return new Promise(async (resolve, reject) => {
+export default (children, data) =>
+    new Promise(async (resolve) => {
         const allLengths = await getLengthsAndPositions(children, data);
         const length = allLengths.reduce((a, b) => a + b.fullLength, 0);
 
@@ -68,4 +66,3 @@ export default (children, data) => {
             lengths: R.pluck('length', allLengths)
         });
     });
-};

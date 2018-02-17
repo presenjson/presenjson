@@ -1,4 +1,4 @@
-import React, { PureComponent, cloneElement } from 'react';
+import { PureComponent, cloneElement } from 'react';
 import PropTypes from 'prop-types';
 
 class Stack extends PureComponent {
@@ -37,6 +37,12 @@ class Stack extends PureComponent {
             .map((o, i) => cloneElement(children[i], { key: i, ...props }));
     };
 }
+
+Stack.propTypes = {
+    play: PropTypes.bool,
+    stepLength: PropTypes.number,
+    children: PropTypes.node
+};
 
 Stack.defaultProps = {
     stepLength: 1000

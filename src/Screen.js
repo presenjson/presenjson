@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 
 export default class Screen extends PureComponent {
     render() {
@@ -13,3 +14,7 @@ export default class Screen extends PureComponent {
         );
     }
 }
+
+Screen.propTypes = {
+    component: PropTypes.element
+};

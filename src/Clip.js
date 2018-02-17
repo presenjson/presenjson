@@ -1,7 +1,6 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 
-const Clip = (props) => false;
+const Clip = () => false;
 
 Clip.propTypes = {
     length: PropTypes.number,
