@@ -79,11 +79,5 @@ describe('Audio', () => {
             expect(audio.src).toBe('');
             expect(onLoad).toHaveBeenCalledWith(30304.5);
         });
-        it('multiplies by thousand', () => {
-            const fn = (nr) => nr * 1000;
-            const number = 30.3043;
-
-            expect(fn(number)).toBe(30304.3);
-        });
     });
 });
