@@ -1,7 +1,6 @@
 import React from 'react';
 
-import data from './data.json';
-import route from './route.json';
+import example from './example.json';
 import PresenJson from '../src/PresenJson';
 import Clip from '../src/Clip';
 import ClipGroup from '../src/ClipGroup';
@@ -14,9 +13,6 @@ import Style from '../src/Style';
 import Stack from '../src/Stack';
 import RouteMap from '../src/RouteMap';
 import Animated from '../src/Animated';
-
-
-console.log(data);
 
 const Start = (props) => {
     const style = {
@@ -43,7 +39,7 @@ const Start = (props) => {
 
 const Background = (props) => {
     return (
-        <Audio play={props.play} onLoad={props.onLoad} src={`bensound-clapandyell.mp3`} />
+        <Audio play={props.play} onLoad={props.onLoad} src='https://ia802508.us.archive.org/5/items/testmp3testfile/mpthreetest.mp3' />
     );
 }
 
@@ -68,9 +64,9 @@ const Poster = (props) => {
     return (
         <Scene>
             <Style fullscreen blur>
-                <Image src={props.data.ship.picture} />
+                <Image src={props.data.mainImage} />
             </Style>
-            <h4>{props.data.name}</h4>
+            <h4>{props.data.title}</h4>
         </Scene>
     );
 };
@@ -83,57 +79,9 @@ const Itinerary = (props) => {
     );
 }
 
-const Cabins = (props) => {
-    return (
-        <Scene>
-            <Animated blur delay='1s'>
-                <Style fullscreen>
-                    <iframe src='file:///Users/jduncan/dev/startpage/index.html'></iframe>
-                </Style>
-            </Animated>
-            <Stack play={props.play} stepLength={400}>
-                <Audio src='' />
-                <Audio src='' />
-                <Audio src='' />
-                <Audio src='i1.ogg#t=0.1' />
-                <Audio src='i2.ogg#t=0.3' />
-                <Audio src='i3.ogg#t=0.35' />
-                <Audio src='i4.ogg#t=0.13' />
-            </Stack>
-            <div className='cabin-wrap'>
-                <Stack play={props.play} stepLength={400}>
-                    <Audio src='' />
-                    <Audio src='' />
-                    <Audio src='' />
-                    <Animated land className='cabin'>
-                        <h3>DO IT</h3>
-                        <div className='price'>ab 259 €</div>
-                        <span>Innenkabine pro Person</span>
-                    </Animated>
-                    <Animated land className='cabin'>
-                        <h3>SEE IT</h3>
-                        <div className='price'>ab 379 €</div>
-                        <span>Außenkabine  pro Person</span>
-                    </Animated>
-                    <Animated land className='cabin'>
-                        <h3>FEEL IT</h3>
-                        <div className='price'>ab 829 €</div>
-                        <span>Balkonkabine pro Person</span>
-                    </Animated>
-                    <Animated land className='cabin'>
-                        <h3>LIVE IT</h3>
-                        <div className='price'>ab 3.259 €</div>
-                        <span>Suite pro Person</span>
-                    </Animated>
-                </Stack>
-            </div>
-        </Scene>
-    );
-}
-
 const Y = ({ onLoad, play }) => {
     return (
-        <PresenJson poster={Poster} data={data} onLoad={onLoad} play={play}>
+        <PresenJson poster={Poster} data={example} onLoad={onLoad} play={play}>
             <Track>
                 <Clip length={3600} component={Start} />
                 <Clip length={2000} component={Intro} />
@@ -153,10 +101,11 @@ const TheMap = (props) => {
 
 const X = ({ onLoad }) => {
     return (
-        <PresenJson poster={Poster} data={data} onLoad={onLoad}>
+        <PresenJson poster={Poster} data={example} onLoad={onLoad}>
             <Track solo>
                 <Clip component={Background} />
-                <Clip component={Cabins} length={2000} />
+                <Clip length={3600} component={Start} />
+                <Clip length={2000} component={Intro} />
                 <Clip component={Y} />
             </Track>
             <Track>
@@ -166,7 +115,7 @@ const X = ({ onLoad }) => {
                 <Clip length={3600} component={Start} />
                 <Clip length={2000} component={Intro} />
                 <Clip length={2000} component={Intro2} />
-                <ClipGroup map={data.itinerary} component={Itinerary} length={1000} />
+                <ClipGroup map={example.itinerary} component={Itinerary} length={1000} />
             </Track>
         </PresenJson>
     );
