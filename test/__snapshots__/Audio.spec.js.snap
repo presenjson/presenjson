@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Audio should render 1`] = `
+<audio
+  volume={1}
+>
+  <source
+    src="test.mp3"
+    type="audio/mpeg"
+  />
+</audio>
+`;

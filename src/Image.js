@@ -6,10 +6,8 @@ const Image = ({ style, src, className, ...rest }) => {
         ...style
     };
 
-    return (
-        <div className={`img ${className}`} style={styles} />
-    );
-}
+    return <div className={`img ${className}`} style={styles} />;
+};
 
 Image.defaultProps = {
     style: {},

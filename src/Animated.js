@@ -6,7 +6,7 @@ const def = {
     fadeInOut: '3s ease-in-out',
     fadeOut: '3s ease-in-out',
     blur: '3s ease-in-out'
-}
+};
 
 export default ({
     children,
@@ -15,16 +15,22 @@ export default ({
     direction = 'normal',
     count = 'initial',
     delay = '0s',
-    ...rest }) => {
-
+    ...rest
+}) => {
     const style = {
         animation: Object.entries(rest)
-            .map((o) => `${o[0]} ${o[1] !== true && o[1] || def[o[0]] || '0s'}`)
+            .map(
+                (o) => `${o[0]} ${(o[1] !== true && o[1]) || def[o[0]] || '0s'}`
+            )
             .join(', '),
         animationFillMode: fillMode,
         animationDirection: direction,
         animationIterationCount: count,
         animationDelay: delay
-    }
-    return (<div className={`fx-container ${className}`} style={style}>{children}</div>);
-}
+    };
+    return (
+        <div className={`fx-container ${className}`} style={style}>
+            {children}
+        </div>
+    );
+};

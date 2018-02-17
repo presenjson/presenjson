@@ -11,6 +11,6 @@ Clip.propTypes = {
 Clip.defaultProps = {
     length: 0,
     delay: 0
-}
+};
 
 export default Clip;

@@ -8,32 +8,34 @@ class Stack extends PureComponent {
     state = {
         step: 0,
         maxSteps: this.props.children.length
-    }
+    };
 
     componentDidMount = () => {
         this.mountedAt = new Date().valueOf();
         requestAnimationFrame(this.loop);
-    }
+    };
 
     loop = () => {
         const current = new Date().valueOf();
 
-        if(this.props.play) {
+        if (this.props.play) {
             this.time = current - this.mountedAt;
             const currentStep = Math.ceil(this.time / this.props.stepLength);
 
-            this.setState({ step: Math.min(currentStep, this.state.maxSteps) })
+            this.setState({ step: Math.min(currentStep, this.state.maxSteps) });
         } else {
             this.mountedAt = current - this.time;
         }
 
         requestAnimationFrame(this.loop);
-    }
+    };
 
     render = () => {
         const { children, stepLength, ...props } = this.props;
-        return Array(this.state.step).fill(0).map((o, i) => cloneElement(children[i], { key: i, ...props }));
-    }
+        return Array(this.state.step)
+            .fill(0)
+            .map((o, i) => cloneElement(children[i], { key: i, ...props }));
+    };
 }
 
 Stack.defaultProps = {

@@ -1,12 +1,12 @@
 .scene {
-    transform: translate3d(0,0,0);
+    transform: translate3d(0, 0, 0);
     z-index: 100;
     width: 100%;
     height: 100%;
     position: absolute;
     left: 0;
     top: 0;
-    color: #FFF;
+    color: #fff;
 
     display: flex;
     flex-flow: row wrap;
@@ -21,7 +21,7 @@
 }
 
 .light {
-    background: #FFF;
+    background: #fff;
     color: #000;
 }
 
@@ -52,7 +52,8 @@
     z-index: 10;
 }
 
-.presenjson .is-on-screen > .scene, .poster > .scene {
+.presenjson .is-on-screen > .scene,
+.poster > .scene {
     z-index: 1000;
     display: flex;
 }
@@ -176,14 +177,14 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    opacity: .6;
+    opacity: 0.6;
     z-index: 2000;
-    animation: fadeout .50s;
+    animation: fadeout 0.5s;
     animation-fill-mode: forwards;
     background: black;
     padding: 20px;
     border-radius: 50%;
-    transition: all .25s ease-in-out;
+    transition: all 0.25s ease-in-out;
 }
 
 .playback-state:after {
@@ -207,7 +208,7 @@
     box-sizing: border-box;
     margin-left: 20px;
     margin-right: 0px;
-    transition: all .25s ease-in-out;
+    transition: all 0.25s ease-in-out;
 }
 
 .initial .playback-state {
@@ -239,8 +240,8 @@
     width: 60px;
     height: 60px;
     margin: 0;
-    transition: all .25s linear;
-    animation: rotate .7s infinite ease-in-out;
+    transition: all 0.25s linear;
+    animation: rotate 0.7s infinite ease-in-out;
 }
 
 .layer {
@@ -262,7 +263,8 @@
     animation-play-state: paused !important;
 }
 
-.container, .fx-container {
+.container,
+.fx-container {
     display: flex;
     flex-flow: row wrap;
     justify-content: center;

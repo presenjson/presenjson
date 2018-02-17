@@ -11,7 +11,7 @@ Group.defaultProps = {
 };
 
 class ClipGroup extends Component {
-    render = () => false
+    render = () => false;
 }
 
 ClipGroup.defaultProps = {

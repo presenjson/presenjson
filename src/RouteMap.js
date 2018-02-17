@@ -5,12 +5,13 @@ import mapboxgl from 'mapbox-gl';
 
 // import 'mapbox-gl/dist/mapbox-gl.css';
 
-const ACCESS_TOKEN = 'pk.eyJ1IjoiamR1bmNhbiIsImEiOiJjaXd2djM1dmQwMDJ6Mm9reW5uZmpiYnJpIn0.gS22bVHYiIogTCaWMFyZhg';
+const ACCESS_TOKEN =
+    'pk.eyJ1IjoiamR1bmNhbiIsImEiOiJjaXd2djM1dmQwMDJ6Mm9reW5uZmpiYnJpIn0.gS22bVHYiIogTCaWMFyZhg';
 const MAP_STYLE = 'mapbox://styles/jduncan/ciy46z08o000u2rru0f7fg1yb';
 
 const mapConf = (config) => ({
     style: MAP_STYLE,
-    center: [ 0, 0 ],
+    center: [0, 0],
     pitch: 0,
     zoom: 1,
     maxZoom: 8,
@@ -38,8 +39,8 @@ const lineLayer = {
         'line-width': 3,
         'line-color': '#f03a47',
         'line-opacity': 1,
-        'line-dasharray': [ -0.01, 2.0 ],
-        'line-width': 3,
+        'line-dasharray': [-0.01, 2.0],
+        'line-width': 3
     }
 };
 
@@ -51,21 +52,25 @@ export default class RouteMap extends Component {
     componentDidMount() {
         const { mapConfig, name: container } = this.props;
         mapboxgl.accessToken = ACCESS_TOKEN;
-        this.map = new mapboxgl.Map(mapConf({
-            container,
-            ...mapConfig
-        }));
+        this.map = new mapboxgl.Map(
+            mapConf({
+                container,
+                ...mapConfig
+            })
+        );
         this.map.on('load', this.onLoad);
     }
 
     onLoad = async () => {
         this.map.addSource('route', emptyLines);
         this.map.addLayer(lineLayer);
-    }
+    };
 
     componentDidUpdate(nextProps) {
-         this.map.resize();
-         this.fitBounds(this.props.routeGeoJson.data.features[0].geometry.coordinates)
+        this.map.resize();
+        this.fitBounds(
+            this.props.routeGeoJson.data.features[0].geometry.coordinates
+        );
     }
 
     componentWillReceiveProps(nextProps) {
@@ -75,9 +80,10 @@ export default class RouteMap extends Component {
     }
 
     animateLine = () => {
-        const coords = this.props.routeGeoJson.data.features[0].geometry.coordinates;
+        const coords = this.props.routeGeoJson.data.features[0].geometry
+            .coordinates;
         const json = R.assocPath(
-            [ 'geometry', 'coordinates' ],
+            ['geometry', 'coordinates'],
             coords.slice(0, this.step),
             this.props.routeGeoJson.data.features[0]
         );
@@ -88,7 +94,7 @@ export default class RouteMap extends Component {
         if (!this.props.paused) {
             requestAnimationFrame(this.animateLine);
         }
-    }
+    };
 
     fitBounds = (coords, fitBoundsPadding) => {
         const extendBounds = (b, coord) => b.extend(coord);
@@ -103,9 +109,9 @@ export default class RouteMap extends Component {
                 duration: 0
             });
         }
-    }
+    };
 
-    render = () => <div id={this.props.name} className='map-wrapper' />;
+    render = () => <div id={this.props.name} className="map-wrapper" />;
 }
 
 RouteMap.propTypes = {
