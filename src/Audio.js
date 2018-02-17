@@ -7,6 +7,7 @@ class Audio extends PureComponent {
 
         if (!this.props.length && this.props.src && this.props.onLoad) {
             const a = document.createElement('audio');
+
             a.onloadedmetadata = () => {
                 this.props.onLoad(a.duration * 1000);
                 a.src = '';
@@ -16,10 +17,10 @@ class Audio extends PureComponent {
     }
 
     componentDidMount() {
-        const action =
-            (this.props.play && this.audio.paused && 'play') || 'pause';
-        this.audio[action]();
-        this.audio.volume = this.props.volume;
+        if (this.props.play) {
+            this.audio.play();
+            this.audio.volume = this.props.volume;
+        }
     }
 
     componentWillReceiveProps(nextProps) {
