@@ -84,7 +84,7 @@ class PresenJson extends Component {
 }
 
 PresenJson.propTypes = {
-    poster: PropTypes.node,
+    poster: PropTypes.any,
     play: PropTypes.bool,
     autoPlay: PropTypes.bool,
     startAt: PropTypes.number,

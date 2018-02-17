@@ -16,5 +16,5 @@ export default class Screen extends PureComponent {
 }
 
 Screen.propTypes = {
-    component: PropTypes.element
+    component: PropTypes.any
 };
