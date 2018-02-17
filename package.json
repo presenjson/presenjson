@@ -12,7 +12,11 @@
   },
   "babel": {
     "presets": [
-      "@babel/env",
+      [ "@babel/env", {
+      "targets": {
+        "browsers": ["chrome >= 60"]
+      }
+    } ],
       "@babel/react",
       "@babel/stage-0"
     ]

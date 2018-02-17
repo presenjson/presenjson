@@ -10,7 +10,6 @@ import Audio from '../src/Audio';
 import Image from '../src/Image';
 import Video from '../src/Video';
 import Style from '../src/Style';
-import Stack from '../src/Stack';
 import RouteMap from '../src/RouteMap';
 import Animated from '../src/Animated';
 
