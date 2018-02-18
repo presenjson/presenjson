@@ -1,0 +1,91 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PresenJson renders all layers 1`] = `
+<div
+  className="presenjson initial"
+  onClick={[Function]}
+>
+  <div
+    className="layers"
+  >
+    <Layer
+      data="data"
+      key="0"
+      layer={0}
+      onLoad={[Function]}
+      paused={true}
+      some="prop"
+      startAt={1000}
+    >
+      <div />
+    </Layer>
+    <Layer
+      data="data"
+      key="1"
+      layer={1}
+      onLoad={[Function]}
+      other="prop"
+      paused={true}
+      startAt={1000}
+    >
+      <div />
+    </Layer>
+  </div>
+  <div
+    className="playback-state"
+  />
+</div>
+`;
+
+exports[`PresenJson renders only solo layers 1`] = `
+<div
+  className="presenjson initial"
+  onClick={[Function]}
+>
+  <div
+    className="layers"
+  >
+    <Layer
+      data="data"
+      key="0"
+      layer={0}
+      onLoad={[Function]}
+      paused={true}
+      solo={true}
+      some="prop"
+      startAt={1000}
+    >
+      <div />
+    </Layer>
+  </div>
+  <div
+    className="playback-state"
+  />
+</div>
+`;
+
+exports[`PresenJson renders poster 1`] = `
+<div
+  className="presenjson initial"
+  onClick={[Function]}
+>
+  <div
+    className="layers"
+  />
+  <div
+    className="poster"
+  >
+    <Poster
+      autoPlay={false}
+      data={Object {}}
+      debug={false}
+      onLoad={[Function]}
+      poster={[Function]}
+      startAt={0}
+    />
+  </div>
+  <div
+    className="playback-state"
+  />
+</div>
+`;

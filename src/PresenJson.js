@@ -10,7 +10,7 @@ class PresenJson extends Component {
     length = 0;
 
     state = {
-        paused: !this.props.autoPlay,
+        paused: !(this.props.autoPlay || this.props.play),
         initial: true,
         length: 0
     };
@@ -21,13 +21,15 @@ class PresenJson extends Component {
     }
 
     componentDidMount() {
-        const paused = !(this.props.play && this.state.paused);
+        const paused = !(this.props.play || this.props.autoPlay);
         this.setState({ paused, initial: !this.props.play });
     }
 
     componentWillReceiveProps(nextProps) {
-        const paused = !(nextProps.play && this.state.paused);
-        this.setState({ paused, initial: !this.props.play });
+        if (nextProps.play !== this.props.play) {
+            const paused = !nextProps.play;
+            this.setState({ paused, initial: false });
+        }
     }
 
     setLayers = () => {
@@ -98,7 +100,8 @@ PresenJson.defaultProps = {
     debug: false,
     autoPlay: false,
     data: {},
-    onLoad: () => {}
+    onLoad: () => {},
+    children: []
 };
 
 export default PresenJson;
