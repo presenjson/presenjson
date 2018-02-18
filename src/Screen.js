@@ -16,5 +16,7 @@ export default class Screen extends PureComponent {
 }
 
 Screen.propTypes = {
-    component: PropTypes.any
+    component: PropTypes.any,
+    onScreen: PropTypes.bool,
+    paused: PropTypes.bool
 };

@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Scene renders correctly 1`] = `
+<Style
+  light={true}
+  scene={true}
+>
+  <div
+    className="test"
+  />
+</Style>
+`;

@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Layer render renders correctly on active bucket 1`] = `
+<div
+  className="layer"
+>
+  <Screen
+    component="the-component"
+    delay={0}
+    i={2}
+    key="undefined-screen-2"
+    length={500}
+    onScreen={false}
+  />
+  <Screen
+    component="the-component"
+    delay={0}
+    i={3}
+    key="undefined-screen-3"
+    length={500}
+    onScreen={false}
+  />
+</div>
+`;
+
+exports[`Layer render renders correctly on empty bucket 1`] = `
+<div
+  className="layer"
+/>
+`;

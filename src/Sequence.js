@@ -1,7 +1,7 @@
 import { PureComponent, cloneElement } from 'react';
 import PropTypes from 'prop-types';
 
-class Stack extends PureComponent {
+class Sequence extends PureComponent {
     time = 0;
     mountedAt = 0;
 
@@ -11,12 +11,12 @@ class Stack extends PureComponent {
     };
 
     componentDidMount = () => {
-        this.mountedAt = new Date().valueOf();
+        this.mountedAt = Date.now();
         requestAnimationFrame(this.loop);
     };
 
     loop = () => {
-        const current = new Date().valueOf();
+        const current = Date.now();
 
         if (this.props.play) {
             this.time = current - this.mountedAt;
@@ -38,14 +38,14 @@ class Stack extends PureComponent {
     };
 }
 
-Stack.propTypes = {
+Sequence.propTypes = {
     play: PropTypes.bool,
     stepLength: PropTypes.number,
     children: PropTypes.node
 };
 
-Stack.defaultProps = {
+Sequence.defaultProps = {
     stepLength: 1000
 };
 
-export default Stack;
+export default Sequence;

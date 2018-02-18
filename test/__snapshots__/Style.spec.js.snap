@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Style renders correctly 1`] = `
+<div
+  className="blur fullscreen container"
+>
+  <div
+    className="test"
+  />
+</div>
+`;
