@@ -99,8 +99,6 @@ export default class Layer extends Component {
     }
 }
 
-Layer.defaultProps = {};
-
 Layer.propTypes = {
     layer: PropTypes.number,
     startAt: PropTypes.number,

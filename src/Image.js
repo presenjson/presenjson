@@ -13,7 +13,7 @@ const Image = ({ style, src, className, ...rest }) => {
 Image.propTypes = {
     style: PropTypes.object,
     className: PropTypes.string,
-    src: PropTypes.string
+    src: PropTypes.string.isRequired
 };
 
 Image.defaultProps = {

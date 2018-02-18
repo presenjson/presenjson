@@ -37,7 +37,7 @@ const Animated = ({
 };
 
 Animated.propTypes = {
-    children: PropTypes.node,
+    children: PropTypes.any,
     className: PropTypes.string,
     fillMode: PropTypes.string,
     direction: PropTypes.string,

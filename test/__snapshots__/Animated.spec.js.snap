@@ -1,0 +1,50 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Animated renders correctly 1`] = `
+<div
+  className="fx-container "
+  style={
+    Object {
+      "animation": "",
+      "animationDelay": "0s",
+      "animationDirection": "normal",
+      "animationFillMode": "forwards",
+      "animationIterationCount": "initial",
+    }
+  }
+>
+  <div
+    className="test"
+  />
+</div>
+`;
+
+exports[`Animated sets animation name, fill-mode, delay, count 1`] = `
+<div
+  className="fx-container the-class"
+  style={
+    Object {
+      "animation": "testAnimation 30s, otherAnimation 20s",
+      "animationDelay": "3s",
+      "animationDirection": "baz",
+      "animationFillMode": "foo",
+      "animationIterationCount": "bar",
+    }
+  }
+/>
+`;
+
+exports[`Animated uses default animation lengths and easing functions for animations 1`] = `
+<div
+  className="fx-container "
+  style={
+    Object {
+      "animation": "approach 7s ease-out, fadeInOut 3s ease-in-out, fadeOut 3s ease-in-out, blur 3s ease-in-out, land 5s cubic-bezier(0,1,.15,.84)",
+      "animationDelay": "0s",
+      "animationDirection": "normal",
+      "animationFillMode": "forwards",
+      "animationIterationCount": "initial",
+    }
+  }
+/>
+`;

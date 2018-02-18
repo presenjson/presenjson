@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Image renders correctly 1`] = `
+<div
+  className="img test-class"
+  some="prop"
+  style={
+    Object {
+      "backgroundImage": "url('/some/src')",
+      "margin": 10,
+    }
+  }
+/>
+`;
