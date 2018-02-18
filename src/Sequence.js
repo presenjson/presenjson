@@ -15,7 +15,7 @@ class Sequence extends PureComponent {
         requestAnimationFrame(this.loop);
     }
 
-    loop() {
+    loop = () => {
         const current = Date.now();
 
         if (this.props.play) {
@@ -28,7 +28,7 @@ class Sequence extends PureComponent {
         }
 
         requestAnimationFrame(this.loop);
-    }
+    };
 
     render() {
         const { children, stepLength, ...props } = this.props;

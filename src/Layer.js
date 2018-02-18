@@ -37,7 +37,7 @@ export default class Layer extends Component {
         this.state.positions[o] <= this.time &&
         this.state.positions[o] + this.state.lengths[o] >= this.time;
 
-    loop() {
+    loop = () => {
         const current = Date.now();
 
         if (!this.props.paused) {
@@ -52,7 +52,7 @@ export default class Layer extends Component {
         }
 
         requestAnimationFrame(this.loop);
-    }
+    };
 
     render() {
         const currentBucket = this.state.buckets[this.state.bucket] || [];
