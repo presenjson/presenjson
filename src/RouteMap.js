@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import * as R from 'ramda';
 import mapboxgl from 'mapbox-gl';
 
-// import 'mapbox-gl/dist/mapbox-gl.css';
-
 const ACCESS_TOKEN =
     'pk.eyJ1IjoiamR1bmNhbiIsImEiOiJjaXd2djM1dmQwMDJ6Mm9reW5uZmpiYnJpIn0.gS22bVHYiIogTCaWMFyZhg';
 const MAP_STYLE = 'mapbox://styles/jduncan/ciy46z08o000u2rru0f7fg1yb';

@@ -2,6 +2,18 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
 class Video extends PureComponent {
+    constructor(...args) {
+        super(...args);
+        if (!this.props.length && this.props.src && this.props.onLoad) {
+            const v = document.createElement('video');
+
+            v.onloadedmetadata = () => {
+                this.props.onLoad(v.duration * 1000);
+                v.src = '';
+            };
+            v.src = this.props.src;
+        }
+    }
     componentDidMount() {
         const action =
             (this.props.play && this.video.paused && 'play') || 'pause';
@@ -46,7 +58,9 @@ Video.propTypes = {
     playbackRate: PropTypes.number,
     className: PropTypes.string,
     children: PropTypes.node,
-    volume: PropTypes.number
+    volume: PropTypes.number,
+    length: PropTypes.number,
+    onLoad: PropTypes.func
 };
 
 Video.defaultProps = {

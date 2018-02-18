@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Sequence renders nothing to begin with 1`] = `Array []`;
+
+exports[`Sequence renders to steps 1`] = `
+Array [
+  <div
+    className="test"
+    key="0"
+  />,
+  <div
+    className="test"
+    key="1"
+  />,
+]
+`;

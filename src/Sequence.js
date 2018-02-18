@@ -10,12 +10,12 @@ class Sequence extends PureComponent {
         maxSteps: this.props.children.length
     };
 
-    componentDidMount = () => {
+    componentDidMount() {
         this.mountedAt = Date.now();
         requestAnimationFrame(this.loop);
-    };
+    }
 
-    loop = () => {
+    loop() {
         const current = Date.now();
 
         if (this.props.play) {
@@ -28,14 +28,14 @@ class Sequence extends PureComponent {
         }
 
         requestAnimationFrame(this.loop);
-    };
+    }
 
-    render = () => {
+    render() {
         const { children, stepLength, ...props } = this.props;
         return Array(this.state.step)
             .fill(0)
             .map((o, i) => cloneElement(children[i], { key: i, ...props }));
-    };
+    }
 }
 
 Sequence.propTypes = {
@@ -45,6 +45,7 @@ Sequence.propTypes = {
 };
 
 Sequence.defaultProps = {
+    children: [],
     stepLength: 1000
 };
 

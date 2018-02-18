@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Video renders correctly 1`] = `
+<video
+  className="video "
+  fullScreen={true}
+  some="prop"
+  volume={1}
+>
+  <source
+    src="test.mp3"
+    type="video/mp4"
+  />
+</video>
+`;
