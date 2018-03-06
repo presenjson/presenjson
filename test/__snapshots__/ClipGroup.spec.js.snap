@@ -4,18 +4,26 @@ exports[`ClipGroup Group renders Clip array 1`] = `
 Array [
   <Clip
     component={[Function]}
-    day={1}
     delay={0}
-    description="Foo"
+    groupData={
+      Object {
+        "day": 1,
+        "description": "Foo",
+      }
+    }
     key="0"
     length={1000}
     some="prop"
   />,
   <Clip
     component={[Function]}
-    day={2}
     delay={0}
-    description="bar"
+    groupData={
+      Object {
+        "day": 2,
+        "description": "bar",
+      }
+    }
     key="1"
     length={1000}
     some="prop"

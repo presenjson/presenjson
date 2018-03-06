@@ -6,7 +6,7 @@ export default class Screen extends PureComponent {
         const { component: Clip, ...props } = this.props;
         return (
             (Clip && (
-                <div className={(props.onScreen && 'is-on-screen') || ''}>
+                <div className={(props.onScreen && 'is-on-screen') || 'is-not-on-screen'}>
                     <Clip {...props} play={props.onScreen && !props.paused} />
                 </div>
             )) ||

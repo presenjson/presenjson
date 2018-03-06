@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Clip from './Clip';
 
 export const Group = ({ map, ...props }) =>
-    map.map((x, i) => <Clip {...props} {...x} key={i} />);
+    map.map((x, i) => <Clip {...props} groupData={x} key={i} />);
 
 Group.defaultProps = {
     map: []

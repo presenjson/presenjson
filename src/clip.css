@@ -1,4 +1,5 @@
 .scene {
+    overflow: hidden;
     transform: translate3d(0, 0, 0);
     z-index: 100;
     width: 100%;
@@ -29,7 +30,7 @@
     width: 100%;
 }
 
-.scene > * {
+.scene * {
     z-index: 1;
 }
 
@@ -45,11 +46,20 @@
     right: 0;
     top: 0;
     user-select: none;
+    background-color: black;
 }
 
 .presenjson .scene {
     display: none;
     z-index: 10;
+}
+
+.presenjson .is-on-screen {
+    z-index: 1000;
+}
+
+.presenjson .is-not-on-screen {
+    display: none;
 }
 
 .presenjson .is-on-screen > .scene,
@@ -93,6 +103,10 @@
     filter: blur(3px);
     transform: scale(1.1);
     overflow: hidden;
+}
+
+.highContrast {
+    filter: contrast(1.5);
 }
 
 @keyframes fadeout {
@@ -142,6 +156,15 @@
     }
 }
 
+@keyframes hueRotate {
+    0% {
+        filter: hue-rotate(0deg);
+    }
+    100% {
+        filter: hue-rotate(360deg);
+    }
+}
+
 @keyframes fadeInOut {
     0% {
         opacity: 0;
@@ -153,6 +176,16 @@
 
     100% {
         opacity: 0;
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
     }
 }
 
@@ -182,6 +215,7 @@
     animation: fadeout 0.5s;
     animation-fill-mode: forwards;
     background: black;
+    border: 3px solid #FFF;
     padding: 20px;
     border-radius: 50%;
     transition: all 0.25s ease-in-out;

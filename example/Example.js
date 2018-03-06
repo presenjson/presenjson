@@ -13,25 +13,30 @@ import Style from '../src/Style';
 import RouteMap from '../src/RouteMap';
 import Animated from '../src/Animated';
 
-const Start = (props) => {
-    const style = {
-        width: 250,
-        height: 100,
-        margin: 10
-    };
+const Title = (props) => <div style={{
+        color: 'yellow',
+        opacity: .8,
+        position: 'absolute',
+        margin: '20px',
+        top: 0,
+        textAlign: 'right',
+        right: 0,
+        fontWeight: 'bold',
+        fontSize: '136px',
+        wordSpacing: '100vw'
+    }}>
+    {props.title}
+</div>;
 
+const Start = (props) => {
     return (
-        <Scene light>
-            <Animated fadeOut delay="1s">
-                <Style blur fullscreen>
-                    <Video play={props.play} src="video.mp4" volume={0} />
+        <Scene dark>
+            <Animated fadeIn='7s ease-in-out' hueRotate>
+                <Title title={props.data.title}></Title>
+                <Style fullscreen>
+                    <Video play={props.play} src={props.data.destination.video} volume={0} onLoad={props.onLoad} />
                 </Style>
-                <Animated approach>
-                    <Image src="hc_logo_anim.svg" style={style} />
-                    <Image src={data.cruiseline.logo} style={style} />
-                </Animated>
             </Animated>
-            <Audio play={props.play} src={`horn.mp3?#t=1`} />
         </Scene>
     );
 };
@@ -71,10 +76,12 @@ const Intro = (props) => {
 const Poster = (props) => {
     return (
         <Scene>
-            <Style fullscreen blur>
-                <Image src={props.data.mainImage} />
-            </Style>
-            <h4>{props.data.title}</h4>
+            <Animated hueRotate count='Infinite'>
+                <Style fullscreen blur>
+                    <Image src={props.data.mainImage} />
+                </Style>
+                <Title title={props.data.title}></Title>
+            </Animated>
         </Scene>
     );
 };
@@ -87,47 +94,39 @@ const Itinerary = (props) => {
     );
 };
 
-const Y = ({ onLoad, play }) => {
+const DayTitle = (props) => <Scene><Animated approach>Day {props.data.day}</Animated></Scene>;
+const TheMap = (props) => {
     return (
-        <PresenJson poster={Poster} data={example} onLoad={onLoad} play={play}>
+        <Scene light>
+            <RouteMap routeGeoJson={props.data.routeGeoJson} {...props} />
+        </Scene>
+    );
+};
+
+const Section = ({ onLoad, play, groupData }) => {
+    return (
+        <PresenJson poster={Poster} data={groupData} onLoad={onLoad} play={play}>
             <Track>
-                <Clip length={3600} component={Start} />
-                <Clip length={2000} component={Intro} />
-                <Clip length={2000} component={Intro2} />
+                <Clip length={1000} component={DayTitle} />
+                <Clip length={2000} component={TheMap} />
             </Track>
         </PresenJson>
     );
 };
 
-const TheMap = (props) => {
-    return (
-        <Scene light>
-            <RouteMap routeGeoJson={route} {...props} />
-        </Scene>
-    );
-};
 
 const X = ({ onLoad }) => {
     return (
         <PresenJson poster={Poster} data={example} onLoad={onLoad}>
-            <Track solo>
-                <Clip component={Background} />
+            <Track>
+                <Clip component={Start} delay={1000} />
+
+                <ClipGroup map={example.sections} component={Section} />
                 <Clip length={3600} component={Start} />
                 <Clip length={2000} component={Intro} />
-                <Clip component={Y} />
             </Track>
             <Track>
-                <Clip length={120000} component={TheMap} />
-            </Track>
-            <Track>
-                <Clip length={3600} component={Start} />
-                <Clip length={2000} component={Intro} />
-                <Clip length={2000} component={Intro2} />
-                <ClipGroup
-                    map={example.itinerary}
-                    component={Itinerary}
-                    length={1000}
-                />
+                <Clip component={Audio} src='SunriseOnMars.mp3' />
             </Track>
         </PresenJson>
     );

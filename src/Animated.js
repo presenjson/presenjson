@@ -6,7 +6,9 @@ const def = {
     land: '5s cubic-bezier(0,1,.15,.84)',
     fadeInOut: '3s ease-in-out',
     fadeOut: '3s ease-in-out',
-    blur: '3s ease-in-out'
+    fadeIn: '3s ease-in-out',
+    blur: '3s ease-in-out',
+    hueRotate: '60s linear'
 };
 
 const Animated = ({
