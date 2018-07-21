@@ -4,6 +4,8 @@ exports[`Video renders correctly 1`] = `
 <video
   className="video "
   fullScreen={true}
+  muted={true}
+  playsInline={true}
   some="prop"
   volume={1}
 >
