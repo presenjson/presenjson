@@ -17,6 +17,7 @@ class Video extends PureComponent {
     componentDidMount() {
         const action =
             (this.props.play && this.video.paused && 'play') || 'pause';
+
         this.video[action]();
         this.video.volume = this.props.volume;
         this.video.playbackRate = this.props.playbackRate;
@@ -40,7 +41,9 @@ class Video extends PureComponent {
     render() {
         const { src, play, playbackRate, className = '', ...rest } = this.props;
         return (
-            <video
+            <video muted
+                playsInline
+                
                 ref={(_) => (this.video = _)}
                 className={`video ${className}`}
                 {...rest}
