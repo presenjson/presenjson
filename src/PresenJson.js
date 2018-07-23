@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import * as R from 'ramda';
 import cx from 'classnames';
 import Layer from './Layer';
+import DefaultPoster from './DefaultPoster';
 
 class PresenJson extends Component {
     layersToRender = [];
@@ -56,7 +57,7 @@ class PresenJson extends Component {
             paused: this.state.paused && !this.state.initial,
             initial: this.state.initial
         });
-        const Poster = this.props.poster;
+        const Poster = typeof this.props.poster;
 
         return (
             <div className={classNames} onClick={this.togglePlayback}>
@@ -76,7 +77,7 @@ class PresenJson extends Component {
                 {this.state.initial &&
                     Poster && (
                         <div className="poster">
-                            <Poster {...this.props} />
+                            {typeof Poster === 'string' && <DefaultPoster src={Poster} /> || <Poster {...this.props} />}
                         </div>
                     )}
                 <div className="playback-state" />
