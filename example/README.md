@@ -1,5 +1,5 @@
     # Presenjson Proof of Concept
-    ### -- Interactive videos for the web
+    ### -- Interactive responsive videos for the web
 
     ## Tl;DR
     With Presenjson you can create interactive and responsive videos and play them on all devices on the web. You control the content of the video by react components and style the video using css.
@@ -17,21 +17,30 @@
     ```JavaScript
     /* Presentation.js */
     import { PresenJson } from 'presenjson';
-    import ShipInfo from './ShipInfo.js';
+    import Ship from './Ship.js';
 
-    const Presentation = (props) => {
+    const data = {
+        ship: {
+            picture: 'https://presenjson.com/examples/assets/ship.jpg',
+            name: 'The Biggest Ship ever built'
+        }
+    };
+
+    const Presentation = () => {
         return (
-            <PresenJson data={props} >
+            <PresenJson data={data} >
                 <Track>
-                    <Clip length={3000} component={ShipName}/>
+                    <Clip length={3000} component={Ship}/>
                 </Track>
             </PresenJson>
         );
     }
     ```
 
+    Each Presenjson can have multiple `Track`s which can contain multiple `Clip`s. The tracks are played at the same time in paralell, the clips are played in sequence. With the `component` prop of `Clip` you define what component should be rendered. The `data` prop of `PresenJson` defines the global data of the  video and is passed down to each `Clip` via `props.data`.
+
     ```JavaScript
-    /* ShipName.js */
+    /* Ship.js */
     export default (props) => {
         return (
             <Scene>
@@ -41,26 +50,37 @@
     }
     ```
 
-    Now to render this we can just render this component with the picture as `props.ship.picture`:
+    Now if we render `Presentation.js` the result will be a 3 second video showing the ships name.
 
-    ```JavaScript
-    import Presentation from './Presentation.js';
+    TODO: insert gif of clicking play and showing image for 3 seconds
 
-    // statically defined data for example
-    const data = {
-        ship: {
-            picture: 'https://presenjson.com/examples/assets/ship.jpg'
-        }
-    };
+    We can now also go a step further and add the ship image in the background with the `Image` and `Style` component
 
-    export default () => <Presentation {...data} />
-    ```
+```JavaScript
+/* ShipName.js */
+export default (props) => {
+    return (
+        <Scene>
+            <Style fullscreen blur>
+                <Image src={props.data.ship.picture} />
+            </Style>
+            <h1>{props.data.ship.name}</h1>
+        </Scene>
+    );
+}
+```
+[GIF] of result
+
+- add animation to first clip
+- second clip with video
+- add second track with background audio
 
     ### Video
 
     ### Image
 
     ### Audio
+    
 
     ### Sequences
 
