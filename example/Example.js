@@ -41,15 +41,15 @@ const Start = (props) => {
     );
 };
 
-const Background = (props) => {
-    return (
-        <Audio
-            play={props.play}
-            onLoad={props.onLoad}
-            src="https://ia802508.us.archive.org/5/items/testmp3testfile/mpthreetest.mp3"
-        />
-    );
-};
+// const Background = (props) => {
+//     return (
+//         <Audio
+//             play={props.play}
+//             onLoad={props.onLoad}
+//             src="https://ia802508.us.archive.org/5/items/testmp3testfile/mpthreetest.mp3"
+//         />
+//     );
+// };
 
 const Intro2 = (props) => {
     console.log(props);
@@ -94,7 +94,6 @@ const Itinerary = (props) => {
     );
 };
 
-const DayTitle = (props) => <Scene><Animated approach>Day {props.data.day}</Animated></Scene>;
 const TheMap = (props) => {
     return (
         <Scene light>
@@ -114,22 +113,46 @@ const Section = ({ onLoad, play, groupData }) => {
     );
 };
 
+const BigText = (props) => <Scene transparent>
+    <Animated approach>
+        <h1 style={{ color: props.color }}>{props.title}</h1>
+    </Animated>
+</Scene>;
 
-const X = ({ onLoad }) => {
-    return (
-        <PresenJson poster={Poster} data={example} onLoad={onLoad}>
-            <Track>
-                <Clip component={Start} delay={1000} />
+const Chopper = (props) => (
+    <Scene transparent>
+        <Audio src='chopper.mp3#t=20' play={props.play} />
+        <div id='chopper'>
+            <div id='left' />
+            <div id='right' />
+        </div>
+    </Scene>
+);
 
-                <ClipGroup map={example.sections} component={Section} />
-                <Clip length={3600} component={Start} />
-                <Clip length={2000} component={Intro} />
-            </Track>
-            <Track>
-                <Clip component={Audio} src='SunriseOnMars.mp3' />
-            </Track>
-        </PresenJson>
-    );
-};
+const Background = () => (
+    <Scene light>
+        <div className='bg' />
+    </Scene>
+);
 
-export default X;
+const LENGTH = 20000;
+const Presentation = () => (
+    <PresenJson>
+        <Track>
+            <Clip length={LENGTH} component={Background} />
+        </Track>
+        <Track>
+            <Clip component={BigText} length={1000} title='THIS' color='#105de0' />
+            <Clip component={BigText} length={1000} title='IS' color='#36db94' />
+            <Clip component={BigText} length={500} title='NOT' color='#000820' />
+            <Clip component={BigText} length={500} title='REALLY' color='#A61D55' />
+            <Clip component={BigText} length={500} title='A' color='rgb(0, 132, 137)' />
+            <Clip component={BigText} length={10000} title='VIDEO' color='#fb5879' />
+        </Track>
+        <Track>
+            <Clip component={Chopper} length={LENGTH} />
+        </Track>
+    </PresenJson>
+);
+
+export default Presentation;

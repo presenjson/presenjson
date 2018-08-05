@@ -26,8 +26,13 @@
     color: #000;
 }
 
+.transparent {
+    background: none;
+}
+
 .scene h1 {
     width: 100%;
+    font-weight: 800;
 }
 
 .scene * {

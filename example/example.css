@@ -1,3 +1,61 @@
 body {
     font-family: 'Montserrat';
 }
+
+.bg {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(255,147,242,1) 0%,rgba(255,255,127,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+}
+
+@keyframes liftoff {
+    0%   { transform: rotate(0deg) translateY(0) }
+    100%   { transform: translateY(-600px)  }
+  }
+  
+  @keyframes blink {
+    0%   { background-color:transparent; }
+    90%   { background-color: #ff0; }
+    95%   { background-color: #ff5e00; }
+    100%   { background-color: #ff5e00; }
+  }
+
+
+#travel > div {
+    position: absolute;
+
+}
+
+#chopper {
+    position: absolute;
+    background-image: url(kitty-1.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 400px;
+    height: 300px;;
+    bottom: -300px;
+    right: 50%;
+    margin-right: -150px;
+    animation: liftoff 10s ease-in-out 1;
+    animation-fill-mode: forwards;
+}
+
+#left, #right {
+    position: absolute;
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    animation: blink 1s infinite;
+    animation-timing-function: steps(1);
+    filter: blur(1px)
+}
+
+#left {
+    left: 63px;
+    bottom: 178px;
+}
+
+#right {
+    left: 101px;
+    bottom: 183px;
+}
