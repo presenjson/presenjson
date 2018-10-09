@@ -3,6 +3,7 @@ This is a proof of concept - please do the right thing and never use this in pro
 ### Coding videos for the web
 
 ![](example/example.gif)
+
 [Go to the live example here](https://example-presenjson.now.sh/)
 
 ## TL;DR
