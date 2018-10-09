@@ -2,7 +2,7 @@
 This is a proof of concept - please do the right thing and never use this in production. Even if you're cool.
 ### Coding videos for the web
 
-![](example.gif)
+![](example/example.gif)
 [Go to the live example here](https://example-presenjson.now.sh/)
 
 ## TL;DR
@@ -77,7 +77,7 @@ Every clip is wrapped in a `Scene`. Inside a scene you can use any normal jsx an
 
 ### How it works
 
-![Presenjson overview](presenjson.png)
+![Presenjson overview](example/presenjson.png)
 
 ## Components
 
@@ -121,6 +121,3 @@ Presenjson takes care of the sceduling - meaning that it decides what component 
 - Use MSE 
 - Jump to any position with correct music/video/animation sync
 - Render stuff before actually on screen
-
-
-## 
