@@ -37,6 +37,27 @@ exports[`PresenJson renders all layers 1`] = `
 </div>
 `;
 
+exports[`PresenJson renders default poster if string 1`] = `
+<div
+  className="presenjson initial"
+  onClick={[Function]}
+>
+  <div
+    className="layers"
+  />
+  <div
+    className="poster"
+  >
+    <DefaultPoster
+      src="/path/to/image"
+    />
+  </div>
+  <div
+    className="playback-state"
+  />
+</div>
+`;
+
 exports[`PresenJson renders only solo layers 1`] = `
 <div
   className="presenjson initial"

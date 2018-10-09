@@ -102,7 +102,7 @@ describe('Sequence', () => {
             </Sequence>
         );
 
-        sequence.setState({ step: 2 });
+        sequence.instance().setState({ step: 2 });
 
         expect(sequence).toMatchSnapshot();
     });

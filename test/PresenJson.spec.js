@@ -8,6 +8,10 @@ describe('PresenJson', () => {
         const presenjson = shallow(<PresenJson poster={Poster} />);
         expect(presenjson).toMatchSnapshot();
     });
+    it('renders default poster if string', () => {
+        const presenjson = shallow(<PresenJson poster='/path/to/image' />);
+        expect(presenjson).toMatchSnapshot();
+    });
     it('renders all layers', () => {
         const Track = () => false;
         const presenjson = shallow(

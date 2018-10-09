@@ -57,7 +57,7 @@ class PresenJson extends Component {
             paused: this.state.paused && !this.state.initial,
             initial: this.state.initial
         });
-        const Poster = typeof this.props.poster;
+        const Poster = this.props.poster;
 
         return (
             <div className={classNames} onClick={this.togglePlayback}>

@@ -1,14 +1,14 @@
 # Presenjson Proof of Concept
+This is a proof of concept - please do the right thing and never use this in production. Even if you're cool.
 ### Coding videos for the web
 
 ![](example.gif)
-
+[Go to the live example here](https://example-presenjson.now.sh/)
 
 ## TL;DR
 With Presenjson you can create interactive and responsive videos and play them on all devices on the web. You control the content of the video by react components and style the video using css.
 
 Think of Presenjson as Adobe Premiere®, where you can put video and audio clips into tracks, maybe add some effects and then probably render it to an .mp4 file at the end. Presenjson basically works the same, except leaves the last step of rendering it to an mp4 file away - the Browser takes over this job and does it on every client. You are defining the 'raw' video with all its assets.
-
 
 ## Motivation
 For example - lets say you are trying to build the simplest product to sell a very complicated product - cruises. 
@@ -17,9 +17,12 @@ A single cruise has a lot of information  attached to it - the itinerary (which 
 
 
 ## Example
-This is the code for the gif of the flying cat with some text.
+Here is the code for the most lame example of a flying cat with some text.
 
 ```JavaScript
+import { Presenjson, Scene, Audio, Track, Clip } from 'presenjson/src/index';
+import 'presenjson/src/clip.css';
+
 const Chopper = (props) => (
     <Scene transparent>
         <Audio src='chopper.mp3#t=20' play={props.play} />

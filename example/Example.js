@@ -1,9 +1,7 @@
 import React from 'react';
 
-import example from './example.json';
 import PresenJson from '../src/PresenJson';
 import Clip from '../src/Clip';
-import ClipGroup from '../src/ClipGroup';
 import Track from '../src/Track';
 import Scene from '../src/Scene';
 import Audio from '../src/Audio';
