@@ -21,7 +21,7 @@ A single cruise has a lot of information  attached to it - the itinerary (which 
 Here is the code for the most lame example of a flying cat with some text.
 
 ```JavaScript
-import { Presenjson, Scene, Audio, Track, Clip } from 'presenjson/src/index';
+import { PresenJson, Scene, Audio, Track, Clip } from 'presenjson/src/index';
 import 'presenjson/src/clip.css';
 
 const Chopper = (props) => (
