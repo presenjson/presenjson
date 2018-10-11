@@ -97,6 +97,55 @@ Props
 ### Scene
 Everything you want to display shold be inside a `Scene`. this component is just a wrapper that you can configure to either be transparent, black (default) or white
 
+### Animations
+To animate an element, use the `<Animated>` component and pass the elements to be animated as children. 
+Example: fade in a title.
+
+```JavaScript
+<Animated fadeIn>
+    <h1>This title will fade in</h1>
+</Animated>
+```
+
+It is also possible to defined a delay, duration, count (repeat) for the animation:
+
+```JavaScript
+<Animated fadeIn='3s ease-in-out' delay='3s' count='5'>
+    <h1>This title will fade in</h1>
+</Animated>
+```
+
+Currently following animations are supported:
+`approach | land | fadeInOut | fadeIn | blur | hueRotate`
+
+#### Defining you own animations
+If you want to define a custom animation, simply pass in the name of your keyframes as a prop:
+
+Define your animation in CSS:
+
+```CSS
+@keyframes myAnimation {
+    0% { background-color: red; }
+    100% { background-color: blue; }
+}
+```
+
+and use it:
+
+```JavaScript
+<Animated myAnimation>
+    <h1>animated with myAnimation</h1>
+</Animated>
+```
+
+you can also combine multiple animations:
+
+```JavaScript
+<Animated myAnimation fadeIn blur>
+    <h1>animated with myAnimation, fadeIn and blur</h1>
+</Animated>
+```
+
 ### Video
 
 ### Image
